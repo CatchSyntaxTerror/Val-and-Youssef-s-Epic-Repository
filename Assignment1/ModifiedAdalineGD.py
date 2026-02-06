@@ -1,6 +1,14 @@
 import numpy as np
+"""
+Authors: Valerie Barker and Youssef Amin
+This modified version of AdalineGD has no bias but instead
+appends a column of 1s to the input that works as the bias.
+Whichever weight value is attached to this column functions
+as the bias since the input is manually set to 1.
+"""
 
-class AdalineGD:
+
+class ModifiedAdalineGD:
     """ADAptive LInear NEuron classifier.
     '''Parameters
     ------------
@@ -13,9 +21,7 @@ class AdalineGD:
     Attributes
     -----------
     w_ : 1d-array
-    Weights after fitting.
-    b_ : Scalar
-    Bias unit after fitting.
+    Weights after fitting, bias is included in this version
     losses_ : list
     Mean squared error loss function values in each epoch.
     """
@@ -38,24 +44,27 @@ class AdalineGD:
         -------
         self : object
         """
+
+        #Get the num rows of X and append a column of 1s
+        rows = X.shape[0]
+        X = np.hstack((X, np.ones((rows,1))))
+
         rgen = np.random.RandomState(self.random_state)
         self.w_ = rgen.normal(loc=0.0, scale=0.01,
         size=X.shape[1])
-        self.b_ = np.float_(0.)
         self.losses_ = []
         for i in range(self.n_iter):
             net_input = self.net_input(X)
             output = self.activation(net_input)
             errors = (y - output)
             self.w_ += self.eta * 2.0 * X.T.dot(errors) / X.shape[0]
-            self.b_ += self.eta * 2.0 * errors.mean()
             loss = (errors**2).mean()
             self.losses_.append(loss)
         return self
     
     def net_input(self, X):
         """Calculate net input"""
-        return np.dot(X, self.w_) + self.b_
+        return np.dot(X, self.w_)
     
     def activation(self, X):
         """Compute linear activation"""
