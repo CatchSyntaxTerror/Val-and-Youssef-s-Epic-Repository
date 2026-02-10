@@ -71,6 +71,8 @@ class ModifiedAdalineGD:
         return X
     
     def predict(self, X):
+        rows = X.shape[0]
+        X = np.hstack((X, np.ones((rows,1))))
         """Return class label after unit step"""
         return np.where(self.activation(self.net_input(X))
                         >= 0.5, 1, 0)
