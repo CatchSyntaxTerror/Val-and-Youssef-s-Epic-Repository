@@ -26,11 +26,11 @@ df_wine.columns = ['Class label', 'Alcohol',
 
 df_wine = df_wine[df_wine['Class label'].isin([1, 2])]
 
-x_wine = df_wine.iloc[:, 1:].values
+X_wine = df_wine.iloc[:, 1:].values
 y_wine = np.where(df_wine['Class label'].values == 2, 1, 0)
 
 print("Wine labels:", np.unique(y_wine, return_counts=True))
-print("Wine X shape:", x_wine.shape)
+print("Wine X shape:", X_wine.shape)
 
 
 # iris
@@ -46,12 +46,12 @@ df_iris = df_iris.dropna(subset=['class'])
 
 df_iris = df_iris[df_iris['class'].isin(['Iris-setosa', 'Iris-versicolor'])]
 
-x_iris = df_iris.iloc[:, 0:4].values
+X_iris = df_iris.iloc[:, 0:4].values
 y_iris = np.where(df_iris['class'].values == 'Iris-versicolor', 1, 0)
 
 print("Iris labels:", np.unique(y_iris, return_counts=True))
-print("Iris X shape:", x_iris.shape)
+print("Iris X shape:", X_iris.shape)
 
-print("wine x:",x_wine)
-print("sigmoid x:", norm.sigmoid(x_wine))
-print("normalized x:", norm.normalized(x_wine))
+print("wine x:",X_wine)
+print("sigmoid x:", norm.sigmoid(X_wine))
+print("normalized x:", norm.normalized(X_wine))
