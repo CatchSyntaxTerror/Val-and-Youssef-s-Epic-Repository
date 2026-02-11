@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import normalization_utils as norm
 
 """
 Todo: Turn to objects or some shit. 
@@ -51,25 +52,6 @@ y_iris = np.where(df_iris['class'].values == 'Iris-versicolor', 1, 0)
 print("Iris labels:", np.unique(y_iris, return_counts=True))
 print("Iris X shape:", x_iris.shape)
 
-def sigmoid (a) :
-    # Sigmoid function:
-    # Normalizes elements between 0 and 1
-    # Maintains order, so if x > y then
-    # sigmoid(x) > sigmoid(y)
-    return np.reciprocal(np.exp(-1 * a) + 1)
-
-def normalized(a) :
-    # Normalization function
-    # Normalizes elements between 0 and 1
-    # Maintains order, so if x > y then
-    # normalized(x) > normalized(y)
-    return (a - np.min(a))/(np.max(a) - np.min(a))
-
-def normalized(a,scale) :
-    # Scales the regular normalization function by specified value
-    return scale * (a - np.min(a))/(np.max(a) - np.min(a))
-
-
 print("wine x:",x_wine)
-print("sigmoid x:",sigmoid(x_wine))
-print("normalized x:",normalized(x_wine))
+print("sigmoid x:", norm.sigmoid(x_wine))
+print("normalized x:", norm.normalized(x_wine))
