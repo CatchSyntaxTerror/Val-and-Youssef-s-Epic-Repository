@@ -1,5 +1,6 @@
 
 import matplotlib.pyplot as plt
+import cerberus as cerb
 
 from ModifiedAdalineGD import ModifiedAdalineGD
 from ModifiedLogisticRegressionGD import ModifiedLogisticRegressionGD
@@ -64,4 +65,3 @@ plt.ylabel("Log Loss")
 plt.title("Iris — Logistic Regression Loss")
 plt.savefig("images/iris_logistic_loss.png")
 plt.close()
-
