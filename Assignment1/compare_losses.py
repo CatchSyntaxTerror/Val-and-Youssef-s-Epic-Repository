@@ -1,6 +1,7 @@
 
 import matplotlib.pyplot as plt
-import cerberus as cerb
+import cerberus as c
+import numpy as np
 
 from ModifiedAdalineGD import ModifiedAdalineGD
 from ModifiedLogisticRegressionGD import ModifiedLogisticRegressionGD
@@ -20,16 +21,24 @@ ada_wine.fit(X_wine, y_wine)
 log_wine = ModifiedLogisticRegressionGD(eta=0.01, n_iter=10000, random_state=1)
 log_wine.fit(X_wine, y_wine)
 
-print("Adaline final loss:", ada_wine.losses_[-1])
-print("Adaline epochs:", len(ada_wine.losses_))
-print("Logistic final loss:", log_wine.losses_[-1])
-print("Logistic epochs:", len(log_wine.losses_))
-
 X_iris, y_iris = load_iris_data()
 ada_iris = ModifiedAdalineGD(eta=0.01, n_iter=10000, random_state=1)
 ada_iris.fit(X_iris, y_iris)
 log_iris = ModifiedLogisticRegressionGD(eta=0.01, n_iter=10000, random_state=1)
 log_iris.fit(X_iris, y_iris)
+
+X_cerberus, y_cerberus = c.load_iris_all()
+
+p_setosa = c.Perceptron()
+p_versicolor = c.Perceptron()
+p_virginica = c.Perceptron()
+p_setosa.fit(X_cerberus, (y_cerberus == "Iris-setosa").astype(int))
+p_versicolor.fit(X_cerberus, (y_cerberus == "Iris-versicolor").astype(int))
+p_virginica.fit(X_cerberus, (y_cerberus == "Iris-virginica").astype(int))
+models = [p_setosa, p_versicolor, p_virginica]
+class_names = np.array(["Iris-setosa", "Iris-versicolor", "Iris-virginica"])
+preds = c.predict_multiclass(X_cerberus, models, class_names)
+
 
 # wine
 plt.figure()
@@ -64,4 +73,15 @@ plt.xlabel("Epoch")
 plt.ylabel("Log Loss")
 plt.title("Iris — Logistic Regression Loss")
 plt.savefig("images/iris_logistic_loss.png")
+plt.close()
+
+# errors from 3 label classification. [Task 3]
+plt.xlabel("Epoch")
+plt.ylabel("Number of Misclassifications")
+plt.title("Perceptron Training Erros")
+plt.plot(p_setosa.errors_, label="Setosa")
+plt.plot(p_versicolor.errors_, label="Versicolor")
+plt.plot(p_virginica.errors_, label="Virginica")
+plt.legend()
+plt.savefig("images/perceptron_erros.png")
 plt.close()

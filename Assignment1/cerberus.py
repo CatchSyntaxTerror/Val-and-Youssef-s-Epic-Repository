@@ -9,6 +9,9 @@ The beast of legend! The three neuron beast!!!
 
 
 def load_iris_all():
+    """
+    Import all three flowers
+    """
     df = pd.read_csv(
         "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data",
         header=None,
@@ -67,15 +70,18 @@ p_setosa = Perceptron()
 p_versicolor = Perceptron()
 p_virginica = Perceptron()
 
-# train the data
+# train the models
 p_setosa.fit(X, (y == "Iris-setosa").astype(int))
 p_versicolor.fit(X, (y == "Iris-versicolor").astype(int))
 p_virginica.fit(X, (y == "Iris-virginica").astype(int))
 
-# compare confidence of each model. 
-# pick the model that was most confident. 
-# returns an array of indexes that map to the model of most confdence.
+
 def predict_multiclass(X, models, class_names):
+    """
+    compare confidence of each model. 
+    pick the model that was most confident. 
+    returns an array of indexes that map to the model of most confdence.
+    """
     scores = np.vstack([m.net_input(X) for m in models])
     winner = np.argmax(scores, axis=0)
     return class_names[winner]
@@ -88,17 +94,7 @@ classes, counts = np.unique(preds, return_counts=True)
 for i in range(len(classes)):
     print(classes[i], ":", counts[i])
 
-# print the errors and graph them. 
+# print the errors. 
 print("Setosa errors per epoch:", p_setosa.errors_)
 print("Versicolor errors per epoch:", p_versicolor.errors_)
 print("Virginica errors per epoch:", p_virginica.errors_)
-
-plt.xlabel("Epoch")
-plt.ylabel("Number of Misclassifications")
-plt.title("Perceptron Training Erros")
-plt.plot(p_setosa.errors_, label="Setosa")
-plt.plot(p_versicolor.errors_, label="Versicolor")
-plt.plot(p_virginica.errors_, label="Virginica")
-plt.legend()
-plt.savefig("images/perceptron_erros.png")
-plt.show()
