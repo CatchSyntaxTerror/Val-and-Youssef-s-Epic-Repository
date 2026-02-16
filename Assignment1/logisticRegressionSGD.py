@@ -65,9 +65,9 @@ class LogisticRegressionSGD:
         if y.ravel().shape[0] > 1:
             for xi, target in zip(X, y):
                 self._update_weights(xi, target)
-            else:
-                self._update_weights(X, y)
-            return self
+        else:
+            self._update_weights(X, y)
+        return self
     def _shuffle(self, X, y):
         """Shuffle training data"""
         r = self.rgen.permutation(len(y))
@@ -82,9 +82,12 @@ class LogisticRegressionSGD:
     def _update_weights(self, xi, target):
         """Apply LogisticRegression learning rule to update the weights"""
         output = self.activation(self.net_input(xi))
+        # numerical stability fix
+        output = np.clip(output, 1e-10, 1 - 1e-10)
+
         error = (target - output)
         self.w_ += self.eta * xi * (error)
-        loss = (target * (np.log(output))) - ((1 - target) * (np.log(1 - output)))
+        loss = (-target * (np.log(output))) - ((1 - target) * (np.log(1 - output)))
         return loss
     
     def net_input(self, X):

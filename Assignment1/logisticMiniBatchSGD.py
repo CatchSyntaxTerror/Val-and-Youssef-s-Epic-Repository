@@ -65,6 +65,9 @@ class LogisticMiniBatchSGD:
             for j in range(X.shape[0] // batch_size):
                 net_input = self.net_input(parsed[j])
                 output = self.activation(net_input)
+                # numerical stability fix
+                output = np.clip(output, 1e-10, 1 - 1e-10)
+
                 errors = (yparsed[j] - output)
                 self.w_ += self.eta * parsed[j].T.dot(errors) / parsed[j].shape[0]
                 loss = (-yparsed[j].dot(np.log(output)) - (1 - yparsed[j]).dot(np.log(1 - output))) / parsed[j].shape[0]
@@ -76,6 +79,9 @@ class LogisticMiniBatchSGD:
                 # last batch
                 net_input = self.net_input(last[0])
                 output = self.activation(net_input)
+                # numerical stability fix
+                output = np.clip(output, 1e-10, 1 - 1e-10)
+
                 errors = (ylast[0] - output)
                 self.w_ += self.eta * last[0].T.dot(errors) / last[0].shape[0]
                 loss = (-ylast[0].dot(np.log(output)) - (1 - ylast[0]).dot(np.log(1 - output))) / last[0].shape[0]
