@@ -64,16 +64,16 @@ class Perceptron:
 
 # Instantiate three perceptrons. One for each type of flower. 
 # Each perceptron is responsible for identifying its given flower
-X, y = load_iris_all()
+# X, y = load_iris_all()
 
-p_setosa = Perceptron()
-p_versicolor = Perceptron()
-p_virginica = Perceptron()
+# p_setosa = Perceptron()
+# p_versicolor = Perceptron()
+# p_virginica = Perceptron()
 
-# train the models
-p_setosa.fit(X, (y == "Iris-setosa").astype(int))
-p_versicolor.fit(X, (y == "Iris-versicolor").astype(int))
-p_virginica.fit(X, (y == "Iris-virginica").astype(int))
+# # train the models
+# p_setosa.fit(X, (y == "Iris-setosa").astype(int))
+# p_versicolor.fit(X, (y == "Iris-versicolor").astype(int))
+# p_virginica.fit(X, (y == "Iris-virginica").astype(int))
 
 
 def predict_multiclass(X, models, class_names):
@@ -87,14 +87,14 @@ def predict_multiclass(X, models, class_names):
     return class_names[winner]
 
 # print the number of times each flower appears in the dataset.
-models = [p_setosa, p_versicolor, p_virginica]
-class_names = np.array(["Iris-setosa", "Iris-versicolor", "Iris-virginica"])
-preds = predict_multiclass(X, models, class_names)
-classes, counts = np.unique(preds, return_counts=True)
-for i in range(len(classes)):
-    print(classes[i], ":", counts[i])
+# models = [p_setosa, p_versicolor, p_virginica]
+# class_names = np.array(["Iris-setosa", "Iris-versicolor", "Iris-virginica"])
+# preds = predict_multiclass(X, models, class_names)
+# classes, counts = np.unique(preds, return_counts=True)
+# for i in range(len(classes)):
+#     print(classes[i], ":", counts[i])
 
-# print the errors. 
-print("Setosa errors per epoch:", p_setosa.errors_)
-print("Versicolor errors per epoch:", p_versicolor.errors_)
-print("Virginica errors per epoch:", p_virginica.errors_)
+# # print the errors. 
+# print("Setosa errors per epoch:", p_setosa.errors_)
+# print("Versicolor errors per epoch:", p_versicolor.errors_)
+# print("Virginica errors per epoch:", p_virginica.errors_)

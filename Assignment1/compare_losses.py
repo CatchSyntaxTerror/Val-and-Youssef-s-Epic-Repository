@@ -7,6 +7,7 @@ from ModifiedAdalineGD import ModifiedAdalineGD
 from ModifiedLogisticRegressionGD import ModifiedLogisticRegressionGD
 from datasetImport import load_wine_data, load_iris_data
 from logisticRegressionSGD import LogisticRegressionSGD
+from logisticMiniBatchSGD import LogisticMiniBatchSGD
 """
 You need matplotlib to run.
 use: python -m pip install matplotlib
@@ -40,8 +41,12 @@ class_names = np.array(["Iris-setosa", "Iris-versicolor", "Iris-virginica"])
 preds = c.predict_multiclass(X_cerberus, models, class_names)
 
 # Logistic regression SGD
-log_iris_sgd = LogisticRegressionSGD(eta=0.01, n_iter=1000, random_state=1)
-log_iris_sgd.fit(X_iris, y_iris)
+log_wine_sgd = LogisticRegressionSGD(eta=0.01, n_iter=10000, random_state=1)
+log_wine_sgd.fit(X_wine, y_wine)
+
+# Logistic regression mini-batch SGD
+log_wine_mini_sgd = LogisticMiniBatchSGD(eta=0.01, n_iter=10000, random_state=1)
+log_wine_mini_sgd.fit(X_wine, y_wine)
 
 
 # wine
@@ -92,9 +97,18 @@ plt.close()
 
 # irisSGD
 plt.figure()
-plt.plot(log_iris_sgd.losses_)
+plt.plot(log_wine_sgd.losses_)
 plt.xlabel("Epoch")
 plt.ylabel("Log Loss")
-plt.title("Iris — Logistic Regression SGD Loss")
-plt.savefig("images/iris_logistic_loss_sgd.png")
+plt.title("Wine — Logistic Regression SGD Loss")
+plt.savefig("images/wine_logistic_loss_sgd.png")
+plt.close()
+
+# irisMiniSGD
+plt.figure()
+plt.plot(log_wine_mini_sgd.losses_)
+plt.xlabel("Epoch")
+plt.ylabel("Log Loss")
+plt.title("Wine — Logistic Regression Mini-Batch SGD Loss")
+plt.savefig("images/wine_logistic_loss_mini_sgd.png")
 plt.close()
