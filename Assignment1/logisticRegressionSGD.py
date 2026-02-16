@@ -22,7 +22,7 @@ class LogisticRegressionSGD:
     Logistic Regression loss function value averaged over all
     training examples in each epoch.
     """
-    def __init__(self, eta=0.01, n_iter=10,
+    def __init__(self, eta=0.01, n_iter=1000,
         shuffle=True, random_state=None):
         self.eta = eta
         self.n_iter = n_iter
@@ -77,8 +77,8 @@ class LogisticRegressionSGD:
         self.rgen = np.random.RandomState(self.random_state)
         self.w_ = self.rgen.normal(loc=0.0, scale=0.01,
         size=m)
-        self.b_ = np.float_(0.)
         self.w_initialized = True
+        
     def _update_weights(self, xi, target):
         """Apply LogisticRegression learning rule to update the weights"""
         output = self.activation(self.net_input(xi))
@@ -86,12 +86,15 @@ class LogisticRegressionSGD:
         self.w_ += self.eta * xi * (error)
         loss = (target * (np.log(output))) - ((1 - target) * (np.log(1 - output)))
         return loss
+    
     def net_input(self, X):
         """Calculate net input"""
         return np.dot(X, self.w_)
+    
     def activation(self, z):
         """Compute logistic sigmoid activation"""
         return 1. / (1. + np.exp(-np.clip(z, -250, 250)))
+    
     def predict(self, X):
         #Get the num rows of X and append a column of 1s
         rows = X.shape[0]

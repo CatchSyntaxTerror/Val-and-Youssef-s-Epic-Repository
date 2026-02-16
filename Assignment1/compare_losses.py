@@ -6,7 +6,7 @@ import numpy as np
 from ModifiedAdalineGD import ModifiedAdalineGD
 from ModifiedLogisticRegressionGD import ModifiedLogisticRegressionGD
 from datasetImport import load_wine_data, load_iris_data
-
+from logisticRegressionSGD import LogisticRegressionSGD
 """
 You need matplotlib to run.
 use: python -m pip install matplotlib
@@ -38,6 +38,10 @@ p_virginica.fit(X_cerberus, (y_cerberus == "Iris-virginica").astype(int))
 models = [p_setosa, p_versicolor, p_virginica]
 class_names = np.array(["Iris-setosa", "Iris-versicolor", "Iris-virginica"])
 preds = c.predict_multiclass(X_cerberus, models, class_names)
+
+# Logistic regression SGD
+log_iris_sgd = LogisticRegressionSGD(eta=0.01, n_iter=1000, random_state=1)
+log_iris_sgd.fit(X_iris, y_iris)
 
 
 # wine
@@ -83,5 +87,14 @@ plt.plot(p_setosa.errors_, label="Setosa")
 plt.plot(p_versicolor.errors_, label="Versicolor")
 plt.plot(p_virginica.errors_, label="Virginica")
 plt.legend()
-plt.savefig("images/perceptron_erros.png")
+plt.savefig("images/perceptron_errors.png")
+plt.close()
+
+# irisSGD
+plt.figure()
+plt.plot(log_iris_sgd.losses_)
+plt.xlabel("Epoch")
+plt.ylabel("Log Loss")
+plt.title("Iris — Logistic Regression SGD Loss")
+plt.savefig("images/iris_logistic_loss_sgd.png")
 plt.close()
