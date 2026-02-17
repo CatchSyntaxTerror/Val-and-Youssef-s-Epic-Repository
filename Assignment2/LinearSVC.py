@@ -56,7 +56,6 @@ class LinearSVC:
             errors = 0
             for xi, target in zip(X, y):
                 update = self.eta * self.loss_single(xi,target,C)
-                update = self.eta * (target - self.predict(xi))
                 self.w_ += update * xi
                 self.b_ += update
                 errors += int(update != 0.0)
