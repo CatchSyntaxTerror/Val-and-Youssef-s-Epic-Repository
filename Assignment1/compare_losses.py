@@ -14,18 +14,20 @@ use: python -m pip install matplotlib
 
 This plots the adaline and logistic regression
 """
+n = 10000
+l_rate = 0.01
 
 # wine data sets 
 X_wine, y_wine = load_wine_data()
-ada_wine = ModifiedAdalineGD(eta=0.01, n_iter=5000, random_state=1)
+ada_wine = ModifiedAdalineGD(eta=l_rate, n_iter=n, random_state=1)
 ada_wine.fit(X_wine, y_wine)
-log_wine = ModifiedLogisticRegressionGD(eta=0.01, n_iter=5000, random_state=1)
+log_wine = ModifiedLogisticRegressionGD(eta=l_rate, n_iter=n, random_state=1)
 log_wine.fit(X_wine, y_wine)
 
 X_iris, y_iris = load_iris_data()
-ada_iris = ModifiedAdalineGD(eta=0.01, n_iter=5000, random_state=1)
+ada_iris = ModifiedAdalineGD(eta=l_rate, n_iter=n, random_state=1)
 ada_iris.fit(X_iris, y_iris)
-log_iris = ModifiedLogisticRegressionGD(eta=0.01, n_iter=5000, random_state=1)
+log_iris = ModifiedLogisticRegressionGD(eta=l_rate, n_iter=n, random_state=1)
 log_iris.fit(X_iris, y_iris)
 
 X_cerberus, y_cerberus = c.load_iris_all()
@@ -41,11 +43,11 @@ class_names = np.array(["Iris-setosa", "Iris-versicolor", "Iris-virginica"])
 preds = c.predict_multiclass(X_cerberus, models, class_names)
 
 # Logistic regression SGD
-log_wine_sgd = LogisticRegressionSGD(eta=0.01, n_iter=5000, random_state=1)
+log_wine_sgd = LogisticRegressionSGD(eta=l_rate, n_iter=n, random_state=1)
 log_wine_sgd.fit(X_wine, y_wine)
 
 # Logistic regression mini-batch SGD
-log_wine_mini_sgd = LogisticMiniBatchSGD(eta=0.01, n_iter=5000, random_state=1)
+log_wine_mini_sgd = LogisticMiniBatchSGD(eta=l_rate, n_iter=n, random_state=1)
 log_wine_mini_sgd.fit(X_wine, y_wine)
 
 

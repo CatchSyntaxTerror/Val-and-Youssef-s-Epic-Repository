@@ -73,7 +73,7 @@ class LogisticMiniBatchSGD:
                 loss = (-yparsed[j].dot(np.log(output)) - (1 - yparsed[j]).dot(np.log(1 - output))) / parsed[j].shape[0]
                 # for average 
                 self.batch_losses_.append(loss)
-                # self.losses_.append(loss)
+                # elf.losses_.append(loss)
                 
             if last[0].size != 0 :
                 # last batch
