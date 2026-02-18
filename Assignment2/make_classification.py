@@ -1,7 +1,7 @@
 import numpy as np
 import random
 
-def make_classification(d,n,u,seed, testSplit=0.7) :
+def make_classification(d=2,n=100,u=1,seed=random.randint(1,1000), testSplit=0.7) :
     """
     Makes a classification dataset for ML training
 
@@ -32,37 +32,37 @@ def make_classification(d,n,u,seed, testSplit=0.7) :
         same as testy but for testing
     """
     random.seed(seed)
-    seed1 = random.randInt(1,100000)
-    seed2 = random.randInt(1,100000)
+    seed1 = random.randint(1,100000)
+    seed2 = random.randint(1,100000)
     a = randomVec(d,-1*u,u,seed1)
     X = randomSamples(n,d,-1*u,u,seed2)
     y = getLabel(X,a)
-    trainingRange = testSplit * n
+    trainingRange = int(testSplit * n)
     trainingX = X[:trainingRange]
     trainingy = y[:trainingRange]
     testX = X[trainingRange:]
     testy = y[trainingRange:]
     return trainingX, trainingy, testX, testy, a
 
-def randomVec(d=2, min=-1, max=1, seed=0) :
+def randomVec(d=2,min=-1, max=1, seed=0) :
     random.seed(seed)
     out = np.zeros(d)
-    for i in out :
+    for i in range(out.shape[0]):
         out[i] = random.uniform(min, max)
     return out
 
 def randomSamples(n=10, d=2, min=-1,max=1, seed=0) :
-    X = np.zeros(n,d)
+    X = np.zeros((n,d))
     random.seed(seed)
-    for iter in n :
-        for dim in d :
+    for iter in range(n) :
+        for dim in range(d) :
             X[iter][dim] = random.uniform(min,max)
     return X
 
 def getLabel(X, a) :
     y = np.zeros(X.shape[0])
-    for i in X.shape[0] :
-        if np.dot(a,X[0]) < 0 :
+    for i in range(X.shape[0]) :
+        if np.dot(a,X[i]) < 0 :
             y[i] = -1
         else :
             y[i] = 1
