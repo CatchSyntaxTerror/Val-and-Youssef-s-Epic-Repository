@@ -34,7 +34,7 @@ def make_classification(d=2,n=100,u=1,seed=random.randint(1,1000), testSplit=0.7
     random.seed(seed)
     seed1 = random.randint(1,100000)
     seed2 = random.randint(1,100000)
-    a = randomVec(d,-1*u,u,seed1)
+    a = randomVec(d,-1,1,seed1)
     X = randomSamples(n,d,-1*u,u,seed2)
     y = getLabel(X,a)
     trainingRange = int(testSplit * n)
