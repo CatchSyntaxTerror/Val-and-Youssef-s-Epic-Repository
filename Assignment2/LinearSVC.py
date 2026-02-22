@@ -73,7 +73,7 @@ class LinearSVC:
     
     # For SGD style, loss per datum
     def loss_single(self, Xi, yi, C) :
-        hinge = max(0,1 - yi * np.dot(Xi,self.w_))
+        hinge = max(0,1 - yi * (np.dot(Xi,self.w_) + self.b_))
         squared_norm = 0.5 * np.dot(self.w_,self.w_)
         return squared_norm + C * hinge
     
@@ -85,7 +85,7 @@ class LinearSVC:
     
     # Hinge loss function
     def hinge_loss(self, X, y):
-        margins = 1 - y * (X @ self.w_)
+        margins = 1 - y * (X @ self.w_ + self.b_)
         return np.maximum(0, margins)
 
     def net_input(self, X):

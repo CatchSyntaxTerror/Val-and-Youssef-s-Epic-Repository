@@ -15,5 +15,5 @@ plt.scatter(
     c = colors)
 plt.ylim(-u,u)
 plt.title("sample plot")
-
-plt.show()
+plt.savefig("images/sample_plot.png")
+plt.close()

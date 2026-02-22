@@ -31,7 +31,7 @@ def make_classification(d=2,n=100,u=1,seed=random.randint(1,1000), testSplit=0.7
     testy: array-like, shape = [n_examples]
         same as testy but for testing
     """
-    print("seed:",seed)
+    # print("seed:",seed)
     random.seed(seed)
     seed1 = random.randint(1,100000)
     seed2 = random.randint(1,100000)
@@ -68,3 +68,12 @@ def getLabel(X, a) :
         else :
             y[i] = 1
     return y
+
+def save_data(d, n, trainingX, trainingy):
+    filename = f"datasets/d{d}_n{n}.npz"
+    np.savez(filename, tx=trainingX, ty=trainingy)
+
+def load_data(d, n):
+    filename = f"datasets/d{d}_n{n}.npz"
+    data = np.load(filename)
+    return data
