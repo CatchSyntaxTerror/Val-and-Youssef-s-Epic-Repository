@@ -1,1 +1,0 @@
-# Flatten images and standardize input features.

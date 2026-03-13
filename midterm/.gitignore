@@ -1,0 +1,8 @@
+# Python crap
+.venv/
+__pycache__/
+*.pyc
+
+# OS crap
+.DS_Store
+Thumbs.db
