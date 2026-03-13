@@ -69,3 +69,6 @@ def record_raw_labels(y_train, y_test, mnist:bool):
     log_raw_labels(y_train, y_test, table_path)
     plot_num_labels(y_train, train_graph, title + " (Training)")
     plot_num_labels(y_test, test_graph, title + " (Test)")
+
+
+    # Todo: PCA component error, linear results, rbf results and poly results 

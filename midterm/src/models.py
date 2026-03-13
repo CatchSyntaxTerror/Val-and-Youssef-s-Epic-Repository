@@ -69,9 +69,9 @@ def lda_pipeline(ker, C, gamma, degree):
 
 def test_pca():
     """
-    used to tune PCA hyper parameters and graph
+    tune PCA hyper parameters and record results
     """
 def test_lda():
     """
-    used to tune PCA hyper parameters and graph
+    tune PCA hyper parameters and record results
     """

@@ -17,7 +17,11 @@ def load_idx_data(images_path, labels_path):
     train_labels = idx2numpy.convert_from_file(labels_path)
     return train_images, train_labels
 
-
+def partintion_prac_tst(X_train):
+    """
+    partition X_train into five practice tests
+    """
+    
 def load_mnist():
     """
     Loads the MNIST images and labeles
