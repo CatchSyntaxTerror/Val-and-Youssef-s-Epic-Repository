@@ -9,9 +9,9 @@ I save images in output/images and tables in output/tables
 PROJ_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR = os.path.join(PROJ_ROOT, "output")
 
-def log_raw_data(y_train, y_test, filepath):
+def log_raw_labels(y_train, y_test, filepath):
     """
-    This function makes a table of the number of samples in each label
+    makes a table of the number of samples in each label
     it stores the table in output/tables
     """
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
@@ -36,9 +36,10 @@ def log_raw_data(y_train, y_test, filepath):
         for cls, cos in test_stats:
             f.write(f"{cls}\t\t|\t{cos}\n")
 
-def plot_raw_data(y, filepath, title):
+def plot_num_labels(y, filepath, title):
     """
-    plots the raw data as a bar graph
+    plots the nummber of times a label appears in the data
+    stored in outputs/images
     """
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     classes, counts = np.unique(y, return_counts=True)
@@ -50,21 +51,21 @@ def plot_raw_data(y, filepath, title):
     plt.savefig(filepath)
     plt.close()
 
-def record_raw_data(y_train, y_test, mnist:bool):
+def record_raw_labels(y_train, y_test, mnist:bool):
     """
     Wrapper for plot_raw_data() and log_raw_data()
     """
     if mnist:
-        table_path = os.path.join(OUTPUT_DIR, "tables", "raw_mnist.log")
-        train_graph = os.path.join(OUTPUT_DIR, "graphs", "raw_mnist_train.png")
-        test_graph  = os.path.join(OUTPUT_DIR, "graphs", "raw_mnist_test.png")
+        table_path = os.path.join(OUTPUT_DIR, "tables", "label_count_mnist.log")
+        train_graph = os.path.join(OUTPUT_DIR, "graphs", "label_count_mnist_train.png")
+        test_graph  = os.path.join(OUTPUT_DIR, "graphs", "label_count_mnist_test.png")
         title = "MNIST Data Distribution"
     else:
-        table_path = os.path.join(OUTPUT_DIR, "tables", "raw_fashion.log")
-        train_graph = os.path.join(OUTPUT_DIR, "graphs", "raw_fashion_train.png")
-        test_graph  = os.path.join(OUTPUT_DIR, "graphs", "raw_fashion_test.png")
+        table_path = os.path.join(OUTPUT_DIR, "tables", "label_count_fashion.log")
+        train_graph = os.path.join(OUTPUT_DIR, "graphs", "label_count_fashion_train.png")
+        test_graph  = os.path.join(OUTPUT_DIR, "graphs", "label_count_fashion_test.png")
         title = "Fashion-MNIST Data Distribution"
 
-    log_raw_data(y_train, y_test, table_path)
-    plot_raw_data(y_train, train_graph, title + " (Training)")
-    plot_raw_data(y_test, test_graph, title + " (Test)")
+    log_raw_labels(y_train, y_test, table_path)
+    plot_num_labels(y_train, train_graph, title + " (Training)")
+    plot_num_labels(y_test, test_graph, title + " (Test)")
