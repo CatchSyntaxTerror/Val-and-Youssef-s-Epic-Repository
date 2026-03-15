@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import src.analysis as analysis
 """
 I figured we could use this file to add graphing stuff. 
 I save images in output/images and tables in output/tables
@@ -71,4 +72,15 @@ def record_raw_labels(y_train, y_test, mnist:bool):
     plot_num_labels(y_test, test_graph, title + " (Test)")
 
 
-    # Todo: PCA component error, linear results, rbf results and poly results 
+def record_result(result):
+    """
+    makes a table of the results saves to results_tbale.csv
+    """
+    table_path = os.path.join(OUTPUT_DIR, "tables", "results.log")
+    res_dict = result.get_param_list()
+    with open(table_path, "a") as f:
+            f.write(f"{res_dict} \n")
+
+
+
+    # Todo: graph PCA component error, linear results, rbf results and poly results 

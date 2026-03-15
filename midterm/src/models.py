@@ -16,12 +16,10 @@ Here are some helpful links:
     https://scikit-learn.org/stable/modules/lda_qda.html
 """
 
-def pca_pipeline(num_comps,  ker, C, gamma, degree):
+def pca_pipeline(X_train, y_train, X_valid, y_valid, num_comps,  ker, C, gamma, degree):
     """
     This function creates a PCA pipeline, calls fit and computes the prediction error
     """
-    X_train, y_train, X_test, y_test = dl.load_mnist()
-    
     match ker:
         case "linear":  model = Pipeline([("scaler", StandardScaler()),
                                            ("pca", PCA(n_components=num_comps)),
@@ -37,16 +35,14 @@ def pca_pipeline(num_comps,  ker, C, gamma, degree):
     model.fit(X_train, y_train)
     train_time = time.time() - train_time
 
-    y_pred = model.predict(X_test)
-    error = np.count_nonzero(y_pred != y_test) / y_test.size
+    y_pred = model.predict(X_valid)
+    error = np.count_nonzero(y_pred != y_valid) / len(y_valid)
     return error, train_time
 
-def lda_pipeline(ker, C, gamma, degree):
+def lda_pipeline(X_train, y_train, X_valid, y_valid, ker, C, gamma, degree):
     """
     This function creates a LDA pipeline, calls fit and computes the prediction error
     """
-    X_train, y_train, X_test, y_test = dl.load_mnist()
-
     match ker:
         case "linear": model  = Pipeline([("scaler", StandardScaler()),
                                             ("lda", LinearDiscriminantAnalysis()),
@@ -63,15 +59,43 @@ def lda_pipeline(ker, C, gamma, degree):
     model.fit(X_train, y_train)
     train_time = time.time() - train_time
 
-    y_pred = model.predict(X_test)
-    error = np.count_nonzero(y_pred != y_test) / y_test.size
+    y_pred = model.predict(X_valid)
+    error = np.count_nonzero(y_pred != y_valid) / len(y_valid)
     return error, train_time
 
-def test_pca():
+def get_folds(X_train, y_train):
+    """
+    splits training set into training set and valid set
+    returns a list of quatuples
+    """
+
+    x_chunks = np.split(X_train, 5)
+    y_chunks = np.split(y_train, 5)
+    folds = []
+    
+    for i in range(5):
+        x_valid = x_chunks[i]
+        y_valid = y_chunks[i]
+        x_tr = np.concatenate(x_chunks[:i] + x_chunks[i+1:])
+        y_tr = np.concatenate(y_chunks[:i] + y_chunks[i+1:])
+        
+        folds.append((x_tr, y_tr, x_valid, y_valid))
+    return folds
+
+def test_pca(X_train, y_train, X_test, y_test):
     """
     tune PCA hyper parameters and record results
     """
-def test_lda():
+    folds = get_folds(X_train, y_train)
+
+    for x_re, y_tr, x_valid, y_valid in folds:
+        """do shit"""
+
+def test_lda(X_train, y_train, X_test, y_test):
     """
     tune PCA hyper parameters and record results
     """
+    folds = get_folds(X_train, y_train)
+
+    for x_re, y_tr, x_valid, y_valid in folds:
+        """do shit"""
