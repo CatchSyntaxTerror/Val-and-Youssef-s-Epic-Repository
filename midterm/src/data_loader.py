@@ -1,5 +1,6 @@
 import os
 import idx2numpy
+import numpy as np
 
 """
 This file loads the MNIST and Fashion-MNIST datasets using the idx2numpy library
@@ -16,11 +17,6 @@ def load_idx_data(images_path, labels_path):
     train_images = idx2numpy.convert_from_file(images_path)
     train_labels = idx2numpy.convert_from_file(labels_path)
     return train_images, train_labels
-
-def partintion_prac_tst(X_train):
-    """
-    partition X_train into five practice tests
-    """
     
 def load_mnist():
     """
@@ -59,3 +55,15 @@ def load_fashion_mnist():
     X_test  = X_test.reshape(X_test.shape[0], -1)
 
     return X_train, y_train, X_test, y_test
+
+def partintion_prac_tst(X_train, chunk_number):
+    """
+    extract the specified chunk
+    returns the chunk and X_train with the chunk removed
+    """
+    n = len(X_train) // 5
+    start =  n * chunk_number
+    end = start + n
+    prac_test = X_train[start:end]
+    new_trian = np.delete(X_train, list(range(start, end)))
+    return prac_test, new_trian
