@@ -82,20 +82,36 @@ def get_folds(X_train, y_train):
         folds.append((x_tr, y_tr, x_valid, y_valid))
     return folds
 
-def test_pca(X_train, y_train, X_test, y_test):
+def test_pca(X_train, y_train, X_test, y_test, kernal):
     """
     tune PCA hyper parameters and record results
     """
     folds = get_folds(X_train, y_train)
 
-    for x_re, y_tr, x_valid, y_valid in folds:
-        """do shit"""
+    C, gamma, degree = get_params(kernal)
+    num_comps = get_comps()
 
-def test_lda(X_train, y_train, X_test, y_test):
+    for x_re, y_tr, x_valid, y_valid in folds:
+        pca_pipeline(x_re,y_tr,x_valid,y_valid,num_comps, kernal,C,gamma,degree)
+
+def test_lda(X_train, y_train, X_test, y_test, kernal):
     """
     tune PCA hyper parameters and record results
     """
     folds = get_folds(X_train, y_train)
 
+    C, gamma, degree = get_params(kernal)
+
+
     for x_re, y_tr, x_valid, y_valid in folds:
-        """do shit"""
+        err, time = lda_pipeline(x_re, y_tr, x_valid, y_valid, kernal, C, gamma, degree)
+        C, gamma, degree = get_params(kernal,err,time)
+
+def get_params(ker, err=0.0, time=0.0):
+    """Do IO to get params"""
+    return 0, 0, 0
+
+def get_comps():
+    return 0
+
+
