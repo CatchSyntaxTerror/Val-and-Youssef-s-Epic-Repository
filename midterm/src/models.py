@@ -171,7 +171,7 @@ def get_comps():
     return n
 
 
-def tewst():
+def test():
     ker = input("Enter Kernel: ")
     X_train, y_train, X_test, y_test = dl.load_mnist();
     # test_pca(X_train, y_train, X_test, y_test, ker)
