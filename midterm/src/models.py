@@ -54,7 +54,6 @@ def lda_model(X_train, y_train, X_valid, y_valid, ker, C, gamma, degree):
         case "poly": model  = Pipeline([("scaler", StandardScaler()),
                                             ("lda", LinearDiscriminantAnalysis()),
                                             ("svc", SVC(max_iter=100, kernel="poly", C=C, gamma=gamma, degree=degree))])
-        case _ : print(f"WHAT THE FUCK: {ker}")
     
     with warnings.catch_warnings(record=True) as recorded_warnings:
         train_time = time.time()
