@@ -72,15 +72,20 @@ def record_raw_labels(y_train, y_test, mnist:bool):
     plot_num_labels(y_test, test_graph, title + " (Test)")
 
 
-def record_result(result):
+def record_result(error_v, error_t, error_test, time, C, gamma, degree, ker, test:bool, comps, pca:bool):
     """
     makes a table of the results saves to results_tbale.csv
     """
-    table_path = os.path.join(OUTPUT_DIR, "tables", "results.log")
-    res_dict = result.get_param_list()
+    if pca: table_path = os.path.join(OUTPUT_DIR, "tables", f"pca_{comps}_{ker}.log")
+    else: table_path = os.path.join(OUTPUT_DIR, "tables", f"lda_{ker}.log")
     with open(table_path, "a") as f:
-            f.write(f"{res_dict} \n")
-
-
-
-    # Todo: graph PCA component error, linear results, rbf results and poly results 
+        match ker:
+            case "linear":
+                if test: f.write(f"C = {C}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
+                else: f.write(f"C = {C}, Final Error: {error_test}, time: {time}\n") 
+            case "rbf":
+                if test: f.write(f"C = {C}, gamma = {gamma}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
+                else: f.write(f"C = {C}, gamma = {gamma}, Final Error: {error_test}, time: {time}\n") 
+            case "poly":
+                if test: f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
+                else: f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, Final Error: {error_test}, time: {time}\n") 
