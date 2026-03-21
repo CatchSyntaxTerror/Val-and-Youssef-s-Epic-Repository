@@ -1,40 +1,61 @@
+import src.models as mods
+import src.graphing as gr
+import src.data_loader as dl
 
 """
 Run project analyses and generate results.
 """
 
-class Result:
+def get_params(ker, test = False):
     """
-    stores test 
+    Gets C, gamma and degree from user.
     """
-    def __init__(self, kernel, C, gamma, degree, valid_error, train_time):
-        self.kernel = kernel
-        self.C = C
-        self.gamma = gamma if kernel != "linear" else -1
-        self.degree = degree if kernel != "poly" else -1
-        self.valid_error = valid_error
-        self.train_time = train_time
-    
-    def get_hypers(self):
-        """
-        retuns hyper parameters
-        """
-        match self.kernel:
-            case "linear": return self.C
-            case "rbf": return self.C, self.gamma
-            case "poly": return self.C, self.gamma, self.degree
-            case _: raise Exception(f"Kernal value: {self.kernel} does not exist")
-    
-    def get_param_list(self):
-        return [self.kernel, self.C, self.gamma, self.degree, self.valid_error, self.train_time]
-    
-    def get_param_dict(self):
-        return {"kernal": self.kernel, 
-                "C": self.C, 
-                "gamma": self.gamma, 
-                "degree": self.degree, 
-                "valid error": self.valid_error, 
-                "train time":self.train_time}
+    if test: str = "Input Final "
+    else: str = "Input "
+    match ker:
+        case "linear": 
+            C = float(input(f"{str}C: "))
+            gamma = -1.0
+            degree = -1
+        case "rbf":
+            C = float(input(f"{str}C: "))
+            gamma = float(input(f"{str}gamma: "))
+            degree = -1
+        case "poly":
+            C = float(input(f"{str}C: "))
+            gamma = float(input(f"{str}gamma: "))
+            degree = int(input(f"{str}degree: "))
+    return C, gamma, degree
 
 
-# Todo: write functions to find best hyper parameters
+def get_comps():
+    n = int(input("enter number of comps for PCA: "))
+    return n
+
+def run_test(model_func, X_train, y_train, X_test, y_test, kernel):
+    """
+    run a 
+    """
+    is_pca = model_func == mods.build_pca_model
+    folds = mods.get_folds(X_train, y_train)
+    num_comps = get_comps() if is_pca else -1
+    err_v, err_t, time = 0, 0, 0
+    
+    for x_re, y_tr, x_valid, y_valid in folds:
+        C, gamma, degree = get_params(kernel, err_v, err_t, time)
+        print(f"error_v: {err_v}, error_t: {err_t}, time: {time}")
+        model = model_func(num_comps, kernel, C, gamma, degree)
+        err_v, err_t, time = mods.run_model(model, x_re, y_tr, x_valid, y_valid)
+        gr.record_test(err_v, err_t, time, C, gamma, degree, kernel, num_comps, is_pca)
+
+    C, gamma, degree = get_params(kernel, err_v, err_t, time)
+    model = model_func(num_comps, kernel, C, gamma, degree)
+    err_v, err_t, time = mods.run_model(model, X_train, y_train, X_test, y_test)
+    gr.record_final(err_v, time, C, gamma, degree, kernel, num_comps, is_pca)
+    print(f"Final: error_test: {err_v}, time: {time}")
+
+def tune(tech:str):
+    ker = input("Enter Kernel: ")
+    X_train, y_train, X_test, y_test = dl.load_mnist();
+    if tech == "pca": run_test(mods.build_pca_model, X_train, y_train, X_test, y_test, ker)
+    else: run_test(mods.build_lda_model, X_train, y_train, X_test, y_test, ker)

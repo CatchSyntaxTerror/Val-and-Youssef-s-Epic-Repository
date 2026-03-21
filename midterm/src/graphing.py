@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-import src.analysis as analysis
 """
 I figured we could use this file to add graphing stuff. 
 I save images in output/images and tables in output/tables
@@ -72,20 +71,26 @@ def record_raw_labels(y_train, y_test, mnist:bool):
     plot_num_labels(y_test, test_graph, title + " (Test)")
 
 
-def record_result(error_v, error_t, error_test, time, C, gamma, degree, ker, test:bool, comps, pca:bool):
+def record_test(error_v, error_t, time, C, gamma, degree, ker, comps, pca:bool):
     """
-    makes a table of the results saves to results_tbale.csv
+    makes a table of the test results saves to results_tbale.csv
     """
     if pca: table_path = os.path.join(OUTPUT_DIR, "tables", f"pca_{comps}_{ker}.log")
     else: table_path = os.path.join(OUTPUT_DIR, "tables", f"lda_{ker}.log")
     with open(table_path, "a") as f:
         match ker:
-            case "linear":
-                if test: f.write(f"C = {C}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
-                else: f.write(f"C = {C}, Final Error: {error_test}, time: {time}\n") 
-            case "rbf":
-                if test: f.write(f"C = {C}, gamma = {gamma}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
-                else: f.write(f"C = {C}, gamma = {gamma}, Final Error: {error_test}, time: {time}\n") 
-            case "poly":
-                if test: f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
-                else: f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, Final Error: {error_test}, time: {time}\n") 
+            case "linear": f.write(f"C = {C}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
+            case "rbf": f.write(f"C = {C}, gamma = {gamma}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
+            case "poly": f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
+
+def record_final(error_test, time, C, gamma, degree, ker, comps, pca:bool):
+    """
+    record final result for tuning
+    """
+    if pca: table_path = os.path.join(OUTPUT_DIR, "tables", f"pca_{comps}_{ker}.log")
+    else: table_path = os.path.join(OUTPUT_DIR, "tables", f"lda_{ker}.log")
+    with open(table_path, "a") as f:
+        match ker:
+            case "linear": f.write(f"C = {C}, Final Error: {error_test}, time: {time}\n") 
+            case "rbf": f.write(f"C = {C}, gamma = {gamma}, Final Error: {error_test}, time: {time}\n") 
+            case "poly":f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, Final Error: {error_test}, time: {time}\n")
