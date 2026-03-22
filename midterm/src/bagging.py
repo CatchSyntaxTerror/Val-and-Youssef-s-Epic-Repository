@@ -60,6 +60,3 @@ def run_bagging(X_train, y_train, y_test, num_bags):
     voted = calc_votes(y_preds)
     return np.count_nonzero(voted != y_test) / len(voted)
 
-
-X_train, y_train, y_test, num_bags = dl.load_mnist()
-run_bagging(X_train, y_train, y_test, num_bags)

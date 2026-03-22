@@ -32,7 +32,7 @@ def get_comps():
     n = int(input("enter number of comps for PCA: "))
     return n
 
-def run_test(model_func, X_train, y_train, X_test, y_test, kernel):
+def run_tunning(model_func, X_train, y_train, X_test, y_test, kernel):
     """
     run a 
     """
@@ -57,5 +57,5 @@ def run_test(model_func, X_train, y_train, X_test, y_test, kernel):
 def tune(tech:str):
     ker = input("Enter Kernel: ")
     X_train, y_train, X_test, y_test = dl.load_mnist();
-    if tech == "pca": run_test(mods.build_pca_model, X_train, y_train, X_test, y_test, ker)
-    else: run_test(mods.build_lda_model, X_train, y_train, X_test, y_test, ker)
+    if tech == "pca": run_tunning(mods.build_pca_model, X_train, y_train, X_test, y_test, ker)
+    else: run_tunning(mods.build_lda_model, X_train, y_train, X_test, y_test, ker)
