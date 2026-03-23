@@ -94,3 +94,5 @@ def record_final(error_test, time, C, gamma, degree, ker, comps, pca:bool):
             case "linear": f.write(f"C = {C}, Final Error: {error_test:.3f}, time: {time:.3f}\n") 
             case "rbf": f.write(f"C = {C}, gamma = {gamma}, Final Error: {error_test:.3f}, time: {time:.3f}\n") 
             case "poly":f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, Final Error: {error_test:.3f}, time: {time:.3f}\n")
+
+    

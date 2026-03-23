@@ -41,12 +41,13 @@ def run_tunning(model_func, X_train, y_train, X_test, y_test, kernel):
     folds = mods.get_folds(X_train, y_train)
     num_comps = get_comps() if is_pca else -1
     err_v, err_t, time = 0, 0, 0
+    print(f"error_v: {err_v}, error_t: {err_t}, time: {time}")
     
     for x_re, y_tr, x_valid, y_valid in folds:
-        print(f"error_v: {err_v}, error_t: {err_t}, time: {time}")
         C, gamma, degree = get_params(kernel, False)
         model = model_func(num_comps, kernel, C, gamma, degree)
         err_v, err_t, time = mods.run_model(model, x_re, y_tr, x_valid, y_valid)
+        print(f"error_v: {err_v}, error_t: {err_t}, time: {time}")
         gr.record_test(err_v, err_t, time, C, gamma, degree, kernel, num_comps, is_pca)
 
     C, gamma, degree = get_params(kernel, True)
@@ -55,15 +56,14 @@ def run_tunning(model_func, X_train, y_train, X_test, y_test, kernel):
     gr.record_final(err_v, time, C, gamma, degree, kernel, num_comps, is_pca)
     print(f"Final: error_test: {err_v}, time: {time}")
 
-def get_input():
+def get_input(tech):
     """
     bagging input
     """
-    tech = input("PCA or LDA: ").lower()
     if tech == "pca": num_comps = get_comps()
     ker = input("Enter Kernal: ").lower()
     C, gamma, degree = get_params(ker, False)
-    return tech, ker, C, gamma, degree, num_comps
+    return ker, C, gamma, degree, num_comps
 
 def tune(tech:str):
     """
@@ -74,9 +74,10 @@ def tune(tech:str):
     if tech == "pca": run_tunning(mods.build_pca_model, X_train, y_train, X_test, y_test, ker)
     else: run_tunning(mods.build_lda_model, X_train, y_train, X_test, y_test, ker)
 
-def bag():
+def bag(tech):
     """
     external method for bagging. Calls run bagging
     """
-    X_train, y_train, y_test, num_bags = dl.load_mnist()
-    bagger.run_bagging(X_train, y_train, y_test, num_bags)
+    num_bags = int(input("Enter number of bags: "))
+    X_train, y_train, X_test, y_test = dl.load_mnist()
+    time, error = bagger.run_bagging(tech, X_train, y_train, X_test, y_test, num_bags)
