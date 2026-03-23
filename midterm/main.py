@@ -1,9 +1,15 @@
-import src
+import src.analysis as ana
+import src.data_loader as dl
 
-
+"""
+Main program. Everything can be runn from here
+"""
 def main():
-    X_train, y_train, y_test, num_bags = src.load_mnist()
-    str = input()
-    src.run_bagging(X_train, y_train, y_test, num_bags)
 
-#Todo: finish setting up main file
+    str = input("What would you like to run?\nA) Tunning\nB) Bagging\n").lower()
+    tech = input("LDA or PCA: ").lower()
+    if str == "a": ana.tune(tech)
+    if str == "b": ana.bag()
+
+if __name__ == main():
+    main()

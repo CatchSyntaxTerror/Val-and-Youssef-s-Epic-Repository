@@ -79,9 +79,9 @@ def record_test(error_v, error_t, time, C, gamma, degree, ker, comps, pca:bool):
     else: table_path = os.path.join(OUTPUT_DIR, "tables", f"lda_{ker}.log")
     with open(table_path, "a") as f:
         match ker:
-            case "linear": f.write(f"C = {C}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
-            case "rbf": f.write(f"C = {C}, gamma = {gamma}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
-            case "poly": f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, error_v: {error_v}, error_t: {error_t}, time: {time}\n")
+            case "linear": f.write(f"C = {C}, error_v: {error_v:.3f}, error_t: {error_t:.3f}, time: {time:.3f}\n")
+            case "rbf": f.write(f"C = {C}, gamma = {gamma}, error_v: {error_v:.3f}, error_t: {error_t:.3f}, time: {time:.3f}\n")
+            case "poly": f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, error_v: {error_v:.3f}, error_t: {error_t:.3f}, time: {time:.3f}\n")
 
 def record_final(error_test, time, C, gamma, degree, ker, comps, pca:bool):
     """
@@ -91,6 +91,6 @@ def record_final(error_test, time, C, gamma, degree, ker, comps, pca:bool):
     else: table_path = os.path.join(OUTPUT_DIR, "tables", f"lda_{ker}.log")
     with open(table_path, "a") as f:
         match ker:
-            case "linear": f.write(f"C = {C}, Final Error: {error_test}, time: {time}\n") 
-            case "rbf": f.write(f"C = {C}, gamma = {gamma}, Final Error: {error_test}, time: {time}\n") 
-            case "poly":f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, Final Error: {error_test}, time: {time}\n")
+            case "linear": f.write(f"C = {C}, Final Error: {error_test:.3f}, time: {time:.3f}\n") 
+            case "rbf": f.write(f"C = {C}, gamma = {gamma}, Final Error: {error_test:.3f}, time: {time:.3f}\n") 
+            case "poly":f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, Final Error: {error_test:.3f}, time: {time:.3f}\n")

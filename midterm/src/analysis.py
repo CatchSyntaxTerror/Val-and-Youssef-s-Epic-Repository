@@ -1,6 +1,7 @@
 import src.models as mods
 import src.graphing as gr
 import src.data_loader as dl
+import src.bagging as bagger
 
 """
 Run project analyses and generate results.
@@ -42,20 +43,40 @@ def run_tunning(model_func, X_train, y_train, X_test, y_test, kernel):
     err_v, err_t, time = 0, 0, 0
     
     for x_re, y_tr, x_valid, y_valid in folds:
-        C, gamma, degree = get_params(kernel, err_v, err_t, time)
         print(f"error_v: {err_v}, error_t: {err_t}, time: {time}")
+        C, gamma, degree = get_params(kernel, False)
         model = model_func(num_comps, kernel, C, gamma, degree)
         err_v, err_t, time = mods.run_model(model, x_re, y_tr, x_valid, y_valid)
         gr.record_test(err_v, err_t, time, C, gamma, degree, kernel, num_comps, is_pca)
 
-    C, gamma, degree = get_params(kernel, err_v, err_t, time)
+    C, gamma, degree = get_params(kernel, True)
     model = model_func(num_comps, kernel, C, gamma, degree)
     err_v, err_t, time = mods.run_model(model, X_train, y_train, X_test, y_test)
     gr.record_final(err_v, time, C, gamma, degree, kernel, num_comps, is_pca)
     print(f"Final: error_test: {err_v}, time: {time}")
 
+def get_input():
+    """
+    bagging input
+    """
+    tech = input("PCA or LDA: ").lower()
+    if tech == "pca": num_comps = get_comps()
+    ker = input("Enter Kernal: ").lower()
+    C, gamma, degree = get_params(ker, False)
+    return tech, ker, C, gamma, degree, num_comps
+
 def tune(tech:str):
+    """
+    external method for main. Calls run_tuning
+    """
     ker = input("Enter Kernel: ")
     X_train, y_train, X_test, y_test = dl.load_mnist();
     if tech == "pca": run_tunning(mods.build_pca_model, X_train, y_train, X_test, y_test, ker)
     else: run_tunning(mods.build_lda_model, X_train, y_train, X_test, y_test, ker)
+
+def bag():
+    """
+    external method for bagging. Calls run bagging
+    """
+    X_train, y_train, y_test, num_bags = dl.load_mnist()
+    bagger.run_bagging(X_train, y_train, y_test, num_bags)
