@@ -1,0 +1,6 @@
+C = 1.0, error_v: 0.110, error_t: 0.103, time: 8.133
+C = 0.005, error_v: 0.117, error_t: 0.102, time: 5.643
+C = 0.05, error_v: 0.114, error_t: 0.101, time: 5.228
+C = 1.2, error_v: 0.114, error_t: 0.101, time: 6.884
+C = 0.8, error_v: 0.101, error_t: 0.104, time: 6.701
+C = 0.8, Final Error: 0.107, time: 10.332

@@ -1,0 +1,11 @@
+C = 1.0, gamma = 1.0, error_v: 0.136, error_t: 0.082, time: 48.132
+C = 1.0, gamma = 2.0, error_v: 0.152, error_t: 0.099, time: 58.961
+C = 0.005, gamma = 1.0, error_v: 0.099, error_t: 0.040, time: 47.979
+C = 0.005, gamma = 1.5, error_v: 0.155, error_t: 0.103, time: 54.776
+C = 0.005, gamma = 1.1, error_v: 0.081, error_t: 0.043, time: 48.774
+C = 0.005, gamma = 1.01, error_v: 0.152, error_t: 0.088, time: 46.760
+C = 0.005, gamma = 1.2, error_v: 0.091, error_t: 0.043, time: 50.628
+C = 0.005, gamma = 1.15, error_v: 0.084, error_t: 0.043, time: 49.508
+C = 1.0, gamma = 3.0, error_v: 0.108, error_t: 0.060, time: 58.651
+C = 0.005, gamma = 3.0, error_v: 0.086, error_t: 0.061, time: 59.039
+C = 0.005, gamma = 1.1, Final Error: 0.091, time: 54.341

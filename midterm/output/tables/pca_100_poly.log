@@ -1,0 +1,6 @@
+C = 0.005, gamma = 2.0, degree = 3, error_v: 0.036, error_t: 0.009, time: 5.066
+C = 0.0005, gamma = 2.0, degree = 3, error_v: 0.034, error_t: 0.006, time: 5.829
+C = 0.0005, gamma = 1.0, degree = 4, error_v: 0.131, error_t: 0.093, time: 8.348
+C = 0.0005, gamma = 2.0, degree = 3, error_v: 0.040, error_t: 0.007, time: 5.246
+C = 0.005, gamma = 5.0, degree = 3, error_v: 0.035, error_t: 0.005, time: 6.494
+C = 0.0005, gamma = 2.0, degree = 3, Final Error: 0.034, time: 8.014

@@ -1,0 +1,6 @@
+C = 1.0, gamma = 1.0, error_v: 0.081, error_t: 0.043, time: 51.924
+C = 0.005, gamma = 1.1, error_v: 0.092, error_t: 0.046, time: 55.398
+C = 0.005, gamma = 1.0, error_v: 0.084, error_t: 0.044, time: 53.028
+C = 0.007, gamma = 1.0, error_v: 0.090, error_t: 0.044, time: 51.791
+C = 1.0, gamma = 3.0, error_v: 0.120, error_t: 0.084, time: 56.850
+C = 1.0, gamma = 1.0, Final Error: 0.076, time: 71.631
