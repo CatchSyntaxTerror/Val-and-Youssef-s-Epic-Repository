@@ -60,6 +60,7 @@ def get_input(tech):
     """
     bagging input
     """
+    num_comps = 0
     if tech == "pca": num_comps = get_comps()
     ker = input("Enter Kernal: ").lower()
     C, gamma, degree = get_params(ker, False)
@@ -80,4 +81,5 @@ def bag(tech):
     """
     num_bags = int(input("Enter number of bags: "))
     X_train, y_train, X_test, y_test = dl.load_mnist()
-    time, error = bagger.run_bagging(tech, X_train, y_train, X_test, y_test, num_bags)
+    time, error, ker, num_comps = bagger.run_bagging(tech, X_train, y_train, X_test, y_test, num_bags)
+    gr.record_bagging(tech, num_bags, error, time, ker, num_comps)

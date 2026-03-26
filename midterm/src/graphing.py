@@ -95,4 +95,14 @@ def record_final(error_test, time, C, gamma, degree, ker, comps, pca:bool):
             case "rbf": f.write(f"C = {C}, gamma = {gamma}, Final Error: {error_test:.3f}, time: {time:.3f}\n") 
             case "poly":f.write(f"C = {C}, gamma = {gamma}, degree = {degree}, Final Error: {error_test:.3f}, time: {time:.3f}\n")
 
+def record_bagging(tech, num_bags, error, time, ker, num_comps):
+    """
+    record results from bagging
+    """
+
+    if tech == "pca": table_path = os.path.join(OUTPUT_DIR, "tables", f"pca_bag.log")
+    else: table_path = os.path.join(OUTPUT_DIR, "tables", f"lda_bag.log")
+    with open(table_path, "a") as f:
+        f.write(f"kernel = {ker}, num_comps = {num_comps}, num_bags = {num_bags}, Error = {error}, Time = {time:.3f}\n")
+
     

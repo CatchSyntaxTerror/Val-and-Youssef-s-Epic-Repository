@@ -1,0 +1,3 @@
+kernel = linear, num_comps = 0, num_bags = 8, Error = 0.1086, Time = 16.456
+kernel = rbf, num_comps = 0, num_bags = 8, Error = 0.3285, Time = 34.026
+kernel = poly, num_comps = 0, num_bags = 8, Error = 0.107, Time = 19.366
