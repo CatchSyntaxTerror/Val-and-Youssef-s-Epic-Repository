@@ -2,6 +2,7 @@ import src.models as mods
 import src.graphing as gr
 import src.data_loader as dl
 import src.bagging as bagger
+import time as time
 
 """
 Run project analyses and generate results.
@@ -32,6 +33,19 @@ def get_params(ker, test = False):
 def get_comps():
     n = int(input("enter number of comps for PCA: "))
     return n
+
+def run_dim_timing(tech, X_train, y_train, X_test, y_test):
+    is_pca = tech == "pca"
+    C = 0.05
+    num_comps = get_comps() if is_pca else -1
+
+    start = time.time()
+    model_func = mods.build_pca_model if is_pca  else mods.build_lda_model
+    model = model_func(num_comps, "linear", C, -1, -1)
+    err_test, err_train, _ = mods.run_model(model, X_train, y_train, X_test, y_test)
+    end = time.time() - start
+    print(f"Training Error: {err_train:.3f}, Test Error: {err_test:.3f}, Time: {end:.3f}")
+
 
 def run_tunning(model_func, X_train, y_train, X_test, y_test, kernel):
     """
@@ -65,6 +79,16 @@ def get_input(tech):
     ker = input("Enter Kernal: ").lower()
     C, gamma, degree = get_params(ker, False)
     return ker, C, gamma, degree, num_comps
+
+def timeDimRed(tech:str):
+    """
+    external method for main. Calls run_dim_timing
+    """
+    ker = "linear"
+    X_train, y_train, X_test, y_test = dl.load_fashion_mnist();
+    if tech == "pca": run_dim_timing(tech, X_train, y_train,X_test,y_test)
+    else: run_dim_timing(tech, X_train, y_train,X_test,y_test)
+    
 
 def tune(tech:str):
     """
