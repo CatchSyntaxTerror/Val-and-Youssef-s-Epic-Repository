@@ -71,7 +71,7 @@ def tune(tech:str):
     external method for main. Calls run_tuning
     """
     ker = input("Enter Kernel: ")
-    X_train, y_train, X_test, y_test = dl.load_mnist();
+    X_train, y_train, X_test, y_test = dl.load_fashion_mnist();
     if tech == "pca": run_tunning(mods.build_pca_model, X_train, y_train, X_test, y_test, ker)
     else: run_tunning(mods.build_lda_model, X_train, y_train, X_test, y_test, ker)
 
@@ -80,6 +80,6 @@ def bag(tech):
     external method for bagging. Calls run bagging
     """
     num_bags = int(input("Enter number of bags: "))
-    X_train, y_train, X_test, y_test = dl.load_mnist()
+    X_train, y_train, X_test, y_test = dl.load_fashion_mnist()
     time, error, ker, num_comps = bagger.run_bagging(tech, X_train, y_train, X_test, y_test, num_bags)
     gr.record_bagging(tech, num_bags, error, time, ker, num_comps)

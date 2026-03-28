@@ -4,3 +4,9 @@ C = 0.005, gamma = 1.0, error_v: 0.084, error_t: 0.044, time: 53.028
 C = 0.007, gamma = 1.0, error_v: 0.090, error_t: 0.044, time: 51.791
 C = 1.0, gamma = 3.0, error_v: 0.120, error_t: 0.084, time: 56.850
 C = 1.0, gamma = 1.0, Final Error: 0.076, time: 71.631
+C = 1.0, gamma = 1.0, error_v: 0.267, error_t: 0.157, time: 63.225
+C = 0.5, gamma = 1.0, error_v: 0.230, error_t: 0.145, time: 54.018
+C = 0.05, gamma = 1.0, error_v: 0.178, error_t: 0.115, time: 64.447
+C = 0.05, gamma = 2.0, error_v: 0.196, error_t: 0.135, time: 61.838
+C = 0.05, gamma = 3.0, error_v: 0.226, error_t: 0.155, time: 69.789
+C = 0.05, gamma = 1.0, Final Error: 0.262, time: 72.614

@@ -1,3 +1,6 @@
 kernel = linear, num_comps = 200, num_bags = 8, Error = 0.0617, Time = 39.848
 kernel = rbf, num_comps = 100, num_bags = 8, Error = 0.8865, Time = 84.229
 kernel = poly, num_comps = 100, num_bags = 8, Error = 0.0332, Time = 37.015
+kernel = linear, num_comps = 200, num_bags = 8, Error = 0.1538, Time = 48.819
+kernel = rbf, num_comps = 200, num_bags = 8, Error = 0.9, Time = 117.780
+kernel = poly, num_comps = 200, num_bags = 8, Error = 0.136, Time = 42.346

@@ -7,3 +7,9 @@ C = 0.8, gamma = 1.0, error_v: 0.097, error_t: 0.054, time: 109.667
 C = 0.9, gamma = 1.001, error_v: 0.103, error_t: 0.053, time: 107.974
 C = 5e-06, gamma = 5.0, error_v: 0.353, error_t: 0.261, time: 120.037
 C = 1.0, gamma = 1.0, Final Error: 0.088, time: 143.919
+C = 1.0, gamma = 1.0, error_v: 0.247, error_t: 0.174, time: 85.092
+C = 0.05, gamma = 1.0, error_v: 0.180, error_t: 0.122, time: 86.697
+C = 0.05, gamma = 1.0, error_v: 0.180, error_t: 0.122, time: 86.697
+C = 0.05, gamma = 2.0, error_v: 0.210, error_t: 0.122, time: 86.697
+C = 0.05, gamma = 1.5, error_v: 0.208, error_t: 0.122, time: 86.697
+C = 0.05, gamma = 1.0, Final Error: 0.183, time: 143.919

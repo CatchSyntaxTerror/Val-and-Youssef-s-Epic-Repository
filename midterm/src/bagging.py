@@ -42,10 +42,17 @@ def run_bagging(tech, X_train, y_train, X_test, y_test, num_bags):
     """
     split data into bags, train models, get votes, calculate error. 
     """
-    x_bags = np.split(X_train, num_bags)
-    y_bags = np.split(y_train, num_bags)
+    np.random.seed(42)
+
+    perm = np.random.permutation(X_train.shape[0])
+    X_train, y_train = X_train[perm], y_train[perm]
+
+    x_bags = np.array_split(X_train, num_bags)
+    y_bags = np.array_split(y_train, num_bags)
     
     start = time.time()
     y_preds, ker, num_comps = predictions(tech, x_bags, y_bags, X_test)
     voted = calc_votes(y_preds)
-    return time.time() - start, np.count_nonzero(voted != y_test) / len(voted), ker, num_comps
+
+    error = np.count_nonzero(voted != y_test) / len(voted)
+    return time.time() - start, error, ker, num_comps

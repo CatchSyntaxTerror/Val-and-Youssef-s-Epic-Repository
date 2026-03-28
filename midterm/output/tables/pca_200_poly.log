@@ -4,3 +4,9 @@ C = 0.005, gamma = 3.0, degree = 3, error_v: 0.033, error_t: 0.008, time: 11.690
 C = 0.005, gamma = 3.0, degree = 2, error_v: 0.035, error_t: 0.003, time: 10.449
 C = 0.005, gamma = 4.0, degree = 3, error_v: 0.030, error_t: 0.007, time: 12.033
 C = 0.005, gamma = 4.0, degree = 3, Final Error: 0.035, time: 19.128
+C = 0.005, gamma = 4.0, degree = 2, error_v: 0.253, error_t: 0.233, time: 7.811
+C = 0.0005, gamma = 4.0, degree = 2, error_v: 0.242, error_t: 0.211, time: 9.343
+C = 0.0005, gamma = 4.0, degree = 3, error_v: 0.241, error_t: 0.216, time: 7.997
+C = 0.0005, gamma = 4.0, degree = 4, error_v: 0.262, error_t: 0.231, time: 9.507
+C = 0.0005, gamma = 5.0, degree = 3, error_v: 0.249, error_t: 0.214, time: 8.591
+C = 0.0005, gamma = 4.0, degree = 3, Final Error: 0.290, time: 13.887
