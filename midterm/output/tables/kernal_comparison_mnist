@@ -1,0 +1,14 @@
+linear, C = 0.05
+Final: error_test: 0.4723, time: 2.1151185035705566
+Final: error_test: 0.5034, time: 3.2777514457702637
+Final: error_test: 0.4118, time: 7.005410432815552
+
+rbf, C = 0.05, gamma = 2.0
+Final: error_test: 0.2506, time: 10.782679319381714
+Final: error_test: 0.2631, time: 13.45226788520813
+Final: error_test: 0.2963, time: 24.085046529769897
+
+poly, C = 0.05, gamma = 2.0, degree = 3
+Final: error_test: 0.4016, time: 2.5652527809143066
+Final: error_test: 0.3894, time: 5.711016654968262
+Final: error_test: 0.3381, time: 11.252152681350708

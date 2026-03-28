@@ -1,0 +1,8 @@
+linear, C = 0.05
+kernel = linear, num_comps = 0, num_bags = 8, Error = 0.1104, Time = 94.239
+
+rbf, C = 0.05, gamma = 2.0
+kernel = rbf, num_comps = 0, num_bags = 8, Error = 0.2527, Time = 21.614
+
+poly, C = 0.05, gamma = 2.0, degree = 3
+kernel = poly, num_comps = 0, num_bags = 8, Error = 0.1155, Time = 29.375
