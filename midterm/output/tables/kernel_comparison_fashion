@@ -1,0 +1,14 @@
+linear, C = 0.05
+PCA50: error_test: 0.4723, time: 11.390437364578247
+PCA100: error_test: 0.5034, time: 17.857139825820923
+PCA200: error_test: 0.4118, time: 23.790547847747803
+
+rbf, C = 0.05, gamma = 2.0
+PCA50: error_test: 0.2506, time: 53.941455125808716
+PCA100: error_test: 0.2631, time: 62.45403695106506
+PCA200: error_test: 0.2963, time: 79.60855054855347
+
+poly, C = 0.05, gamma = 2.0, degree = 3
+PCA50: error_test: 0.4016, time: 17.77826976776123
+PCA100: error_test: 0.3894, time: 23.505834102630615
+PCA200: error_test: 0.3381, time: 36.30639314651489

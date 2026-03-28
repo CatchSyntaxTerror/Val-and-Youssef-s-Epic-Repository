@@ -38,9 +38,9 @@ def build_svc(kernel, C, gamma=0, degree=0):
     initializes svc for pipelines
     """
     match kernel: 
-        case "linear": return SVC(max_iter=1000, kernel="linear", C=C)
-        case "rbf": return SVC(max_iter=1000, kernel="rbf", C=C, gamma=gamma)
-        case "poly":return SVC(max_iter=1000, kernel="poly", C=C, gamma=gamma, degree=degree)
+        case "linear": return SVC(max_iter=250, kernel="linear", C=C)
+        case "rbf": return SVC(max_iter=250, kernel="rbf", C=C, gamma=gamma)
+        case "poly":return SVC(max_iter=250, kernel="poly", C=C, gamma=gamma, degree=degree)
     
 
 def time_fit(model, X_train, y_train):

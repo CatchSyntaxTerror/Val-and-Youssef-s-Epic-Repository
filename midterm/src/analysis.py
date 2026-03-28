@@ -46,6 +46,14 @@ def run_dim_timing(tech, X_train, y_train, X_test, y_test):
     end = time.time() - start
     print(f"Training Error: {err_train:.3f}, Test Error: {err_test:.3f}, Time: {end:.3f}")
 
+def run_kernel(model_func, X_train, y_train, X_test, y_test, kernel):
+    is_pca = model_func == mods.build_pca_model
+    num_comps = get_comps() if is_pca else -1
+    
+    C, gamma, degree = get_params(kernel, True)
+    model = model_func(num_comps, kernel, C, gamma, degree)
+    err_v, err_t, time = mods.run_model(model, X_train, y_train, X_test, y_test)
+    print(f"Final: error_test: {err_v}, time: {time}")
 
 def run_tunning(model_func, X_train, y_train, X_test, y_test, kernel):
     """
@@ -89,6 +97,14 @@ def timeDimRed(tech:str):
     if tech == "pca": run_dim_timing(tech, X_train, y_train,X_test,y_test)
     else: run_dim_timing(tech, X_train, y_train,X_test,y_test)
     
+def kernel(tech:str):
+    """
+    external method for main. Calls run_tuning
+    """
+    ker = input("Enter Kernel: ")
+    X_train, y_train, X_test, y_test = dl.load_fashion_mnist();
+    if tech == "pca": run_kernel(mods.build_pca_model, X_train, y_train, X_test, y_test, ker)
+    else: run_kernel(mods.build_lda_model, X_train, y_train, X_test, y_test, ker)
 
 def tune(tech:str):
     """
