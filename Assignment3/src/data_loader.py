@@ -66,7 +66,7 @@ def vectorize_data(X_train, X_test):
 
     return X_train_vec, X_test_vec
 
-def load_data(path="../aclImdb"):
+def load_data(path="aclImdb"):
     """
     load, clean, shuffle, split, vectorize
     """
