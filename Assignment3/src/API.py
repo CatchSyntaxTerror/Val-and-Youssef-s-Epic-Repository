@@ -1,4 +1,5 @@
 import src.training_loop as tl
+import src.record as rec
 """
 Exposed functions for main to call
 """
@@ -7,8 +8,9 @@ def run_baseline(data, config, use_test = False):
     """
     Task 3 tune the hyper perameters
     """
-    if use_test: tl.train(data, config, use_test=True)
-    else: tl.train(data, config)
+    if use_test: results = tl.train(data, config, use_test=True)
+    else: results = tl.train(data, config)
+    rec.save_baseline(config, results, use_test)
 
 def run_kfold(data, config):
     """"""
@@ -23,7 +25,7 @@ def get_baseline_config():
     hls = list(map(int, input("Enter Hidden Layers (ex: 128 64 ...): ").split()))
     lr = float(input("Enter learning rate: "))
     w_decay = float(input("Enter weight decay: "))
-    epochs = int(input("enter epochs: "))
+    epochs = int(input("Enter epochs: "))
 
     return {"hls": hls, "lr": lr, "w_decay": w_decay, "epochs": epochs}
 

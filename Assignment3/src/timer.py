@@ -8,4 +8,4 @@ class Timer():
         self.time = time.time()
 
     def stop(self):
-        return self.time - time.time
+        return self.time - time.time()

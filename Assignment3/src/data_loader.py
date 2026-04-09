@@ -70,8 +70,7 @@ def load_data():
     """
     load, clean, shuffle, split, vectorize
     """
-    path = input("Enter relative path to: aclImdb")
-    df = load_raw_reviews(path)
+    df = load_raw_reviews("aclImdb")
     df["review"] = df["review"].apply(preprocessor)
     df = shuffle_data(df)
 
