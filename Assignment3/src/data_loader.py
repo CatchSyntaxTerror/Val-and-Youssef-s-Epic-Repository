@@ -59,7 +59,7 @@ def vectorize_data(X_train, X_test):
     """
     Fit TF-IDF on training data and transform both train and test data.
     """
-    vectorizer = TfidfVectorizer(strip_accents=None, lowercase=False, preprocessor=None)
+    vectorizer = TfidfVectorizer(strip_accents=None, lowercase=False, preprocessor=None, max_features=8000)
 
     X_train_vec = vectorizer.fit_transform(X_train)
     X_test_vec = vectorizer.transform(X_test)
@@ -78,4 +78,5 @@ def load_data():
     X_train, y_train, X_test, y_test = split_data(df)
     X_train_vec, X_test_vec = vectorize_data(X_train, X_test)
 
-    return X_train_vec, y_train, X_test_vec, y_test
+    return {"xtr": X_train_vec, "ytr": y_train, "xtst": X_test_vec, "ytst": y_test }
+
