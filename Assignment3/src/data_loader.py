@@ -66,10 +66,11 @@ def vectorize_data(X_train, X_test):
 
     return X_train_vec, X_test_vec
 
-def load_data(path="aclImdb"):
+def load_data():
     """
     load, clean, shuffle, split, vectorize
     """
+    path = input("Enter relative path to: aclImdb")
     df = load_raw_reviews(path)
     df["review"] = df["review"].apply(preprocessor)
     df = shuffle_data(df)
