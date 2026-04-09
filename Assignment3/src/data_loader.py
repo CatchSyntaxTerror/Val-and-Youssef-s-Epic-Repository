@@ -48,10 +48,10 @@ def split_data(df):
     """
     Split data: first 25,000 rows for training, remaining 25,000 for testing.
     """
-    X_train = df.loc[:24999, "review"].values
-    y_train = df.loc[:24999, "sentiment"].values
-    X_test = df.loc[25000:, "review"].values
-    y_test = df.loc[25000:, "sentiment"].values
+    X_train = df.loc[:34999, "review"].values
+    y_train = df.loc[:34999, "sentiment"].values
+    X_test = df.loc[35000:, "review"].values
+    y_test = df.loc[35000:, "sentiment"].values
 
     return X_train, y_train, X_test, y_test
 
