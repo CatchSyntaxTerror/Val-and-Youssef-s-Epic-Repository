@@ -35,7 +35,7 @@ def initialize(data, config):
     optim = optimizer.Adam(model.parameters(), lr=config["lr"], weight_decay=config["w_decay"])
     return xtr, ytr, xtst, ytst, model, loss_func, optim
 
-def my_train(data, config, use_test = False):
+def my_train(data, config, use_test = False, ret_model=False):
     """
     The main training loop
     """
@@ -66,7 +66,10 @@ def my_train(data, config, use_test = False):
         eval_preds = (eval_probs >= 0.5).float()
         eval_acc = (eval_preds == ytst).float().mean().item()
 
-    return {acc_name: eval_acc, "tr_acc": tr_acc, "time": tr_time}
+    if (ret_model) :
+        return {acc_name: eval_acc, "tr_acc": tr_acc, "time": tr_time}
+    else :
+        return {acc_name: eval_acc, "tr_acc": tr_acc, "time": tr_time, "model": model}
 
 
 
