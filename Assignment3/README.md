@@ -8,13 +8,25 @@ This project builds a neural network to classify IMDb movie reviews.
 ## Files
 
 - `main.py`  
-  Entry point. Loads data, builds the model, and runs basic tests.
+  Entry point. Loads data, and runs tests.
 
-- `src/data_loader.py`  
+- `src/API.py`  
+  Contains wrappers for main to run tests
+
+- `src/data_loader.py`    
   Loads, preprocesses, shuffles, splits, and vectorizes the dataset.
 
-- `src/model.py`  
+- `src/model.py`   
   Defines the neural network (fully connected with configurable layers and dropout).
+
+- `src/record.py`  
+  Writes resulyts and makes graphs.
+
+- `src/timer.py`  
+  A classic meme.
+
+- `src/training_loop.py`  
+  Convert data to tensors, trains model, computes loss, times training, returns results.
 
 - `aclImdb/`  
   Dataset containing training and test reviews.
