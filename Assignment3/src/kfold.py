@@ -10,9 +10,9 @@ import src.training_loop as tl
 
 
 def decision(y_preds):
-    np_preds = np.array(y_preds)
-    avg = np.mean(np_preds)
-    #TODO: sigmoid on out
+    avg = np.mean(y_preds, axis=0)
+    eval_probs = torch.sigmoid(avg).squeeze()
+    out = (eval_probs >= 0.5).float()
     out = avg
     return out
 
@@ -59,22 +59,39 @@ def run_kfold(data,config):
     """Runs k fold on data given config"""
     folds = split_training_data(data,config)
     valid_results = []
+    models = []
+    train_pre_activation = []
     test_pre_activation = []
+    train_avg = 0.0
     test_avg = 0.0
-    x_tst = data["xtst"]
-    y_tst = data["ytst"]
 
+    x_tr = torch.tensor(data["xtst"].toarray(), dtype=torch.float32)
+    y_tr = torch.tensor(data["ytst"], dtype=torch.float32)
+    x_tst = torch.tensor(data["xtst"].toarray(), dtype=torch.float32)
+    y_tst = torch.tensor(data["ytst"], dtype=torch.float32)
+
+    timing_kfold = Timer()
     kfold = KFold(n_splits=config["k"], shuffle=True, random_state=42)
     for fold in folds:
         print(f'FOLD {fold}')
         print('--------------------------------')
-        valid_results.append(tl.my_train(folds[fold],config,False))
-        #TODO: extract model from this for final step
-        print(valid_results[fold])
-        #TODO: run models prediction pre activation and append to list
+        results = tl.my_train(folds[fold],config,False,True)
+        valid_results.append(results)
+        models.append(results["model"])
+        #print(f"Results for fold {fold} validation: ")
+        
+        train_pre_activation.append(results["model"](x_tr))
+        test_pre_activation.append(results["model"](x_tst))
     
-    avg_pred = decision(test_pre_activation)
-    #TODO: evaluate avg pred on accuracy, runtime
+    train_pred = decision(train_pre_activation)
+    test_pred = decision(test_pre_activation)
+    
+    time = timing_kfold.stop()
+    train_acc = (train_pred == y_tr).float().mean().item()
+    test_acc = (test_pred == y_tst).float().mean().item()
+    
+    print(f"K-fold accuracy: train: {train_acc}, test: {test_acc}")
+    print(f"time: {time}")
     
     
     
