@@ -8,3 +8,75 @@ results: {'val_acc': 0.5024285912513733, 'tr_acc': 0.49853572249412537, 'time': 
 VALIDATION RUN:
 config: {'hls': [128, 64, 32, 16, 8, 4, 2], 'lr': 0.004, 'w_decay': 2e-05, 'epochs': 1000}
 results: {'val_acc': 0.492000013589859, 'tr_acc': 0.5011428594589233, 'time': 149.60152173042297}
+VALIDATION RUN:
+config: {'hls': [128, 32, 32, 32], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 12}
+results: {'val_acc': 0.4911428689956665, 'tr_acc': 0.5030714273452759, 'time': 1.7029550075531006}
+VALIDATION RUN:
+config: {'hls': [128, 64, 32, 32], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 25}
+results: {'val_acc': 0.503000020980835, 'tr_acc': 0.5001071691513062, 'time': 61.46623086929321}
+VALIDATION RUN:
+config: {'hls': [256, 128, 64, 32, 16, 8, 4, 2], 'lr': 1e-05, 'w_decay': 9e-05, 'epochs': 25}
+results: {'val_acc': 0.5087142586708069, 'tr_acc': 0.4986785650253296, 'time': 85.31861758232117}
+VALIDATION RUN:
+config: {'hls': [256, 128, 128], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 25}
+results: {'val_acc': 0.5044285655021667, 'tr_acc': 0.4997499883174896, 'time': 81.60881185531616}
+VALIDATION RUN:
+config: {'hls': [512, 256, 128], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 25}
+results: {'val_acc': 0.4975714385509491, 'tr_acc': 0.501464307308197, 'time': 124.34194159507751}
+VALIDATION RUN:
+config: {'hls': [256, 128, 64], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 25}
+results: {'val_acc': 0.5128571391105652, 'tr_acc': 0.49764284491539, 'time': 5.711418628692627}
+VALIDATION RUN:
+config: {'hls': [256, 128, 64], 'lr': 0.0001, 'w_decay': 0.0009, 'epochs': 25}
+results: {'val_acc': 0.4992857277393341, 'tr_acc': 0.49932143092155457, 'time': 5.5099568367004395}
+VALIDATION RUN:
+config: {'hls': [256, 128, 64], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 200}
+results: {'val_acc': 0.5062857270240784, 'tr_acc': 0.5055357217788696, 'time': 47.62983703613281}
+VALIDATION RUN:
+config: {'hls': [256, 128, 64], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 100}
+results: {'val_acc': 0.5134285688400269, 'tr_acc': 0.4975000023841858, 'time': 21.62775492668152}
+VALIDATION RUN:
+config: {'hls': [128, 32, 32], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 100}
+results: {'val_acc': 0.5154285430908203, 'tr_acc': 0.4970000088214874, 'time': 13.482212781906128}
+TEST RUN:
+config: {'hls': [128, 64, 32], 'lr': 1e-05, 'w_decay': 0.0009, 'epochs': 100}
+results: {'tst_acc': 0.4984000027179718, 'tr_acc': 0.5006856918334961, 'time': 17.340980768203735}
+VALIDATION RUN:
+config: {'hls': [128, 64, 32], 'lr': 0.001, 'w_decay': 0.0, 'epochs': 50}
+results: {'val_acc': 0.87371426820755, 'tr_acc': 0.926892876625061, 'time': 6.699436664581299}
+VALIDATION RUN:
+config: {'hls': [128, 32, 32], 'lr': 0.001, 'w_decay': 0.0, 'epochs': 50}
+results: {'val_acc': 0.8510000109672546, 'tr_acc': 0.9064642786979675, 'time': 6.893639087677002}
+VALIDATION RUN:
+config: {'hls': [128, 64, 32], 'lr': 0.0001, 'w_decay': 5e-13, 'epochs': 50}
+results: {'val_acc': 0.6265714168548584, 'tr_acc': 0.6281428337097168, 'time': 6.630649566650391}
+TEST RUN:
+config: {'hls': [128, 64, 32], 'lr': 0.002, 'w_decay': 0.0, 'epochs': 50}
+results: {'tst_acc': 0.8668000102043152, 'tr_acc': 0.9573143124580383, 'time': 8.666160106658936}
+TEST RUN:
+config: {'hls': [128, 64, 32], 'lr': 0.001, 'w_decay': 0.0, 'epochs': 100}
+results: {'tst_acc': 0.8598999977111816, 'tr_acc': 0.971875011920929, 'time': 23.895799160003662}
+TEST RUN:
+config: {'hls': [128, 32, 32], 'lr': 1e-06, 'w_decay': 0.0, 'epochs': 300}
+results: {'tst_acc': 0.49869999289512634, 'tr_acc': 0.5003250241279602, 'time': 62.0959153175354}
+TEST RUN:
+config: {'hls': [128, 64, 32], 'lr': 0.001, 'w_decay': 0.0, 'epochs': 200}
+results: {'tst_acc': 0.8501999974250793, 'tr_acc': 0.9969499707221985, 'time': 46.33429479598999}
+VALIDATION RUN:
+config: {'hls': [128, 32, 32], 'lr': 0.0001, 'w_decay': 3e-05, 'epochs': 100}
+results: {'val_acc': 0.499875009059906, 'tr_acc': 0.5023124814033508, 'time': 18.561880588531494}
+TEST RUN:
+config: {'hls': [256, 128, 64], 'lr': 0.001, 'w_decay': 1e-09, 'epochs': 100}
+results: {'tst_acc': 0.8549000024795532, 'tr_acc': 0.9847000241279602, 'time': 34.08555054664612}
+TEST RUN:
+config: {'hls': [128, 64, 32], 'lr': 0.0015, 'w_decay': 1e-06, 'epochs': 50}
+results: {'tst_acc': 0.8823000192642212, 'tr_acc': 0.9963750243186951, 'time': 183.7190601825714}
+TEST RUN:
+config: {'hls': [128, 64, 32], 'lr': 0.0015, 'w_decay': 1.0, 'epochs': 50}
+results: {'tst_acc': 0.49869999289512634, 'tr_acc': 0.5003250241279602, 'time': 197.5675253868103}
+TEST RUN:
+config: {'hls': [128, 32, 32], 'lr': 0.0015, 'w_decay': 1e-06, 'epochs': 50}
+results: {'tst_acc': 0.8870999813079834, 'tr_acc': 0.9850999712944031, 'time': 201.55363655090332}
+TEST RUN:
+config: {'hls': [128, 32, 32], 'lr': 0.0015, 'w_decay': 1e-06, 'epochs': 49}
+results: {'tst_acc': 0.8852999806404114, 'tr_acc': 0.9789999723434448, 'time': 186.58857202529907}

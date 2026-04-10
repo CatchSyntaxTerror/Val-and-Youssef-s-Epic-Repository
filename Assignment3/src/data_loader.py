@@ -48,10 +48,11 @@ def split_data(df):
     """
     Split data: first 25,000 rows for training, remaining 25,000 for testing.
     """
-    X_train = df.loc[:34999, "review"].values
-    y_train = df.loc[:34999, "sentiment"].values
-    X_test = df.loc[35000:, "review"].values
-    y_test = df.loc[35000:, "sentiment"].values
+    num_train = int(0.8 * len(df) - 1)
+    X_train = df.loc[:num_train, "review"].values
+    y_train = df.loc[:num_train, "sentiment"].values
+    X_test = df.loc[num_train + 1:, "review"].values
+    y_test = df.loc[num_train + 1:, "sentiment"].values
 
     return X_train, y_train, X_test, y_test
 
@@ -59,7 +60,7 @@ def vectorize_data(X_train, X_test):
     """
     Fit TF-IDF on training data and transform both train and test data.
     """
-    vectorizer = TfidfVectorizer(strip_accents=None, lowercase=False, preprocessor=None, max_features=8000)
+    vectorizer = TfidfVectorizer(strip_accents=None, lowercase=False, preprocessor=None)
 
     X_train_vec = vectorizer.fit_transform(X_train)
     X_test_vec = vectorizer.transform(X_test)

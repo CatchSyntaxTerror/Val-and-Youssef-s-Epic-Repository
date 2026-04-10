@@ -32,10 +32,10 @@ def initialize(data, config):
     xtr, ytr, xtst, ytst = to_tensors(data)
     model = Net(xtr.shape[1], config["hls"], config.get("dropout", 0.0))
     loss_func = nn.BCEWithLogitsLoss()
-    optim = optimizer.SGD(model.parameters(), lr=config["lr"], weight_decay=config["w_decay"])
+    optim = optimizer.Adam(model.parameters(), lr=config["lr"], weight_decay=config["w_decay"])
     return xtr, ytr, xtst, ytst, model, loss_func, optim
 
-def train(data, config, use_test = False):
+def my_train(data, config, use_test = False):
     """
     The main training loop
     """
@@ -46,10 +46,9 @@ def train(data, config, use_test = False):
     for e in range(config["epochs"]):
         model.train()
 
+        optim.zero_grad()
         outs = model(xtr).squeeze()
         loss = loss_func(outs, ytr)
-
-        optim.zero_grad()
         loss.backward()
         optim.step()
     tr_time = timer.stop()
