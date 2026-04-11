@@ -10,10 +10,9 @@ import src.training_loop as tl
 
 
 def decision(y_preds):
-    avg = np.mean(y_preds, axis=0)
+    avg = torch.mean(torch.stack(y_preds), dim=0)
     eval_probs = torch.sigmoid(avg).squeeze()
     out = (eval_probs >= 0.5).float()
-    out = avg
     return out
 
 
@@ -62,8 +61,6 @@ def run_kfold(data,config):
     models = []
     train_pre_activation = []
     test_pre_activation = []
-    train_avg = 0.0
-    test_avg = 0.0
 
     x_tr = torch.tensor(data["xtst"].toarray(), dtype=torch.float32)
     y_tr = torch.tensor(data["ytst"], dtype=torch.float32)
@@ -71,7 +68,7 @@ def run_kfold(data,config):
     y_tst = torch.tensor(data["ytst"], dtype=torch.float32)
 
     timing_kfold = Timer()
-    kfold = KFold(n_splits=config["k"], shuffle=True, random_state=42)
+ 
     for fold in folds:
         print(f'FOLD {fold}')
         print('--------------------------------')

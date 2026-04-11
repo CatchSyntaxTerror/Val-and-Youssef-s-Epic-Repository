@@ -1,5 +1,6 @@
 import src.training_loop as tl
 import src.record as rec
+import src.dropout as drop
 """
 Exposed functions for main to call
 """
@@ -21,7 +22,10 @@ def run_kfold(data, config):
     """
 
 def run_dropout(data, config):
-    """"""
+    """
+    Train models with dropout
+    """
+    
 
 def get_baseline_config():
     """
@@ -41,6 +45,7 @@ def get_kfold_config():
     config = get_baseline_config()
     config["k"] = int(input("Number of Folds: "))
     return config
+
 def get_dropout_config():
     """
     get info for droupout config

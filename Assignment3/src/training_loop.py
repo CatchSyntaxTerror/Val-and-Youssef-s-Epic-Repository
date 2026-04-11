@@ -67,9 +67,9 @@ def my_train(data, config, use_test = False, ret_model=False):
         eval_acc = (eval_preds == ytst).float().mean().item()
 
     if (ret_model) :
-        return {acc_name: eval_acc, "tr_acc": tr_acc, "time": tr_time}
-    else :
         return {acc_name: eval_acc, "tr_acc": tr_acc, "time": tr_time, "model": model}
+    else :
+        return {acc_name: eval_acc, "tr_acc": tr_acc, "time": tr_time}
 
 
 
