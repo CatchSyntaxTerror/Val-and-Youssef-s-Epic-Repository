@@ -5,6 +5,17 @@ Authors: Youssef Amin, Valerie Barker
 ## Overview
 This project builds a neural network to classify IMDb movie reviews.
 
+## Directories
+
+- `aclimbd\`  
+  The Imbd movie data
+
+- `outputs\`  
+  All outputs from the program
+
+- `src\`  
+  The module which contains all our code. Used by `main.py`
+
 ## Files
 
 - `main.py`  
@@ -15,6 +26,12 @@ This project builds a neural network to classify IMDb movie reviews.
 
 - `src/data_loader.py`    
   Loads, preprocesses, shuffles, splits, and vectorizes the dataset.
+
+- `kfold.py`  
+  Implements Kfold for task 4
+
+- `droput.py`  
+  Implements dropout for task 5
 
 - `src/model.py`   
   Defines the neural network (fully connected with configurable layers and dropout).
@@ -30,6 +47,9 @@ This project builds a neural network to classify IMDb movie reviews.
 
 - `aclImdb/`  
   Dataset containing training and test reviews.
+
+- `logistic_regression.py`  
+  The textbooks Logistic regression code for analyzing the movie data
 
 ## How to Run
 

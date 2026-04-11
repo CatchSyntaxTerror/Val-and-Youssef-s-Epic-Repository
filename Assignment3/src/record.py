@@ -44,3 +44,22 @@ def save_dropout(config, results):
         f.write(f"config: {config}\n")
         f.write(f"results: {results}\n")
         f.flush()
+
+def save_others(config, results):
+    """
+    save dropout results
+    """
+    path = os.path.join(BASE_DIR, "outputs", "tables")
+    os.makedirs(path, exist_ok=True)
+
+    file_path = os.path.join(path, "LRGD_results.log")
+    file_exists = os.path.exists(file_path)
+
+    with open(file_path, "a") as f:
+        if not file_exists:
+            f.write("Dropout Results:\n")
+
+        f.write(f"Logistic Regresion:\n")
+        f.write(f"config: {config}\n")
+        f.write(f"results: {results}\n")
+        f.flush()
