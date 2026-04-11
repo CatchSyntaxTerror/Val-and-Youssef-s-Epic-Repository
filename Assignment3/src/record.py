@@ -9,7 +9,7 @@ def save_baseline(config, results, use_test):
     """
     save baseline results
     """
-    path = os.path.join(BASE_DIR, "outputs", "tables")
+    path = os.path.join(BASE_DIR, "outputs")
     os.makedirs(path, exist_ok=True)
 
     file_path = os.path.join(path, "baseline_results.log")
@@ -29,7 +29,7 @@ def save_dropout(config, results):
     """
     save dropout results
     """
-    path = os.path.join(BASE_DIR, "outputs", "tables")
+    path = os.path.join(BASE_DIR, "outputs")
     os.makedirs(path, exist_ok=True)
 
     file_path = os.path.join(path, "dropout_results.log")
@@ -49,7 +49,7 @@ def save_others(config, results):
     """
     save dropout results
     """
-    path = os.path.join(BASE_DIR, "outputs", "tables")
+    path = os.path.join(BASE_DIR, "outputs")
     os.makedirs(path, exist_ok=True)
 
     file_path = os.path.join(path, "LRGD_results.log")

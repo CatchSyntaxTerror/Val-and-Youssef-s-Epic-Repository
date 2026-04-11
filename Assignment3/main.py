@@ -4,13 +4,9 @@ from src.data_loader import load_data
 
 def main():
     data = load_data()
-    task_num = int(input("Which Task?\n2) Logistic Regression\n3) Baseline\n4) k fold\n5) Dropout\n"))
+    task_num = int(input("Which Task?\n3) Baseline\n4) k fold\n5) Dropout\n"))
 
     match task_num:
-        case 2:
-            config = api.get_LR_config()
-            api.run_LR(data, config)
-
         case 3:
             use_test = False if int(input("Are you tunning?\n1) Yes\n2) No\n")) == 1 else True
             if not use_test: 

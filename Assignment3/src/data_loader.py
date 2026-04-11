@@ -60,7 +60,7 @@ def vectorize_data(X_train, X_test):
     """
     Fit TF-IDF on training data and transform both train and test data.
     """
-    vectorizer = TfidfVectorizer(strip_accents=None, lowercase=False, preprocessor=None)
+    vectorizer = TfidfVectorizer(strip_accents=None, lowercase=False, preprocessor=None, max_features=10)
 
     X_train_vec = vectorizer.fit_transform(X_train)
     X_test_vec = vectorizer.transform(X_test)

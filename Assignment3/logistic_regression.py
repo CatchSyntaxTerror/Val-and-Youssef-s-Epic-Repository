@@ -39,7 +39,7 @@ def load_data_from_aclImdb():
 
     np.random.seed(0)
     df = df.reindex(np.random.permutation(df.index))
-    df.to_csv('outputs/movie_data.csv', index=False, encoding='utf-8')
+    df.to_csv('data/movie_data.csv', index=False, encoding='utf-8')
 
 def preprocessor(text):
     text = re.sub(r'<[^>]*>', '', text)
@@ -48,7 +48,7 @@ def preprocessor(text):
     return text
 
 
-df = pd.read_csv('outputs/movie_data.csv', encoding='utf-8')
+df = pd.read_csv('data/movie_data.csv', encoding='utf-8')
 df = df.rename(columns={"0": "review", "1": "sentiment"})
 
 #Clean the data
