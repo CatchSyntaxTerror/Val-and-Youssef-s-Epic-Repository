@@ -40,6 +40,10 @@ This project builds and compares RNN, GRU, and LSTM models to predict stock pric
   Generates plots and logs for stock data.
 
 ## How to Run
-
+To populate CSVs:
+```bash
+python3 get_stock_data.py
+```
+To run main program:
 ```bash
 python3 main.py
