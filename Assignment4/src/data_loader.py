@@ -67,6 +67,6 @@ def load_data(stock, split_size):
     Load and preprocess data
     """
     data = load_save_data([stock])[stock]
-    X_train, y_train, X_test, y_test = split_data(data["Close"].values)
+    X_train, y_train, X_test, y_test = split_data(data["Close"].values, split_size)
     return {"xtr": X_train, "ytr": y_train, "xtst": X_test, "ytst": y_test}
     
