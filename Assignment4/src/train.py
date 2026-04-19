@@ -37,7 +37,7 @@ def run_RNN(data, config=None):
             test_losses.append(test_loss.item())
             acc = (torch.abs(test_pred - data["ytst"]) < 0.05).float().mean()
 
-        vis.log_epoch(f"Epoch {e+1}: train_loss={loss.item():.6f}, test_loss={test_loss.item():.6f}, acc={acc.item():.4f}\n", "RNN")
+        vis.log_epoch(f"Epoch {e+1}: train_loss={loss.item():.6f}, test_loss={test_loss.item():.6f}, acc={acc.item():.4f}\n", "RNN", e+1)
     
     results = {"tr_losses": train_losses, "tst_losses": test_losses, "acc": acc.item()}
     return config, results
@@ -73,22 +73,22 @@ def run_training_loop(model_str, data):
     mode = int(input("Are you tuning:\n1) Yes \n2) No\n"))
     match model_str:
         case "RNN": 
-            if mode == 2: 
-                run_RNN(data)
+            if mode == 1: 
+                tune_RNN(data)
             else: 
-                config, results = tune_RNN(data)
+                config, results = run_RNN(data)
                 vis.log_run(config, results, "RNN")
 
         case "GRU":  
-            if mode == 2: 
-                run_GRU(data)
+            if mode == 1: 
+                tune_GRU(data)
             else: 
-                config, results = tune_GRU(data)
+                config, results = run_GRU(data)
                 vis.log_run(config, results, "GRU")
         case "LSTM": 
-            if mode == 2: 
-                run_LSTM(data)
+            if mode == 1: 
+                tune_LSTM(data)
             else: 
-                config, results = tune_LSTM(data)
+                config, results = run_LSTM(data)
                 vis.log_run(config, results, "LSTM")
     

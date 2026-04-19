@@ -1,0 +1,21 @@
+
+Tuning Run:
+	Hyper Parameters: {'hidden_size': 128, 'num_layers': 5, 'lr': 0.001, 'epochs': 50}
+	Accuracy: 0.7178294658660889
+
+Tuning Run:
+	Hyper Parameters: {'hidden_size': 64, 'num_layers': 5, 'lr': 0.001, 'epochs': 50}
+	Accuracy: 0.5844961404800415
+
+Tuning Run:
+	Hyper Parameters: {'hidden_size': 32, 'num_layers': 5, 'lr': 0.001, 'epochs': 50}
+	Accuracy: 0.0
+
+Tuning Run:
+	Hyper Parameters: {'hidden_size': 16, 'num_layers': 5, 'lr': 0.001, 'epochs': 50}
+	Accuracy: 0.3519379794597626
+
+Tuning Run:
+	Hyper Parameters: {'hidden_size': 8, 'num_layers': 5, 'lr': 0.001, 'epochs': 50}
+	Accuracy: 0.0
+

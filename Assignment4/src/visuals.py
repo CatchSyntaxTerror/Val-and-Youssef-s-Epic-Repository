@@ -7,6 +7,8 @@ Functions for making tables and graphs
 """
 BASE_DIR = "output"
 RESULTS_DIR = f"{BASE_DIR}/results"
+x = 1
+
 def plot_stocks(stock_data):
     """ plots the raw stock data """
 
@@ -46,10 +48,14 @@ def log_run(config, results, str, tuning=False):
         f.write(f"\tHyper Parameters: {config}\n\tAccuracy: {results["acc"]}\n\n")
         f.close()
 
-def log_epoch(str, model:str):
+def log_epoch(str, model:str, epoch):
     """log loss per epoch"""
-
+    global x
     os.makedirs(RESULTS_DIR, exist_ok=True)
     with open(f"{RESULTS_DIR}/{model}_losses.log", "a") as f:
+        if x == 1: f.write("\nNew Run\n\n")
+        if epoch == 1:
+            f.write(f"\nRound {x}:\n\n")
+            x += 1
         f.write(str)
         f.close()
