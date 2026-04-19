@@ -1,5 +1,6 @@
 import yfinance as yf
 import pandas as pd
+import numpy as np
 import os
 from sklearn.preprocessing import MinMaxScaler
 """
@@ -20,9 +21,7 @@ def save_data(stocks):
         d.to_csv(f"data/{stock}.csv", index=False)
     
 def load_save_data(stocks):
-    """
-    load stock data from CSVs
-    """
+    """ load stock data from CSVs"""
     data = {}
     for s in stocks:
         data[s] = pd.read_csv(f"data/{s}.csv", index_col=0, parse_dates=["Date"])
@@ -42,14 +41,12 @@ def split_sets(prices):
     return train_scaled, test_scaled
 
 def make_xy(set, size):
-    """
-    split the set into X and y 
-    """
+    """ split the set into X and y """
     X, y = [], []
     for i in range(len(set) - size):
         X.append(set[i:i+size])
         y.append(set[i+size])
-    return X, y
+    return np.array(X), np.array(y)
 
 def split_data(ps, n):
     """
@@ -63,9 +60,7 @@ def split_data(ps, n):
 
 
 def load_data(stock, split_size):
-    """
-    Load and preprocess data
-    """
+    """ Load and preprocess data """
     data = load_save_data([stock])[stock]
     X_train, y_train, X_test, y_test = split_data(data["Close"].values, split_size)
     return {"xtr": X_train, "ytr": y_train, "xtst": X_test, "ytst": y_test}

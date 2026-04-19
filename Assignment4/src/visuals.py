@@ -6,11 +6,10 @@ import matplotlib.pyplot as plt
 Functions for making tables and graphs
 """
 BASE_DIR = "output"
-
+RESULTS_DIR = f"{BASE_DIR}/results"
 def plot_stocks(stock_data):
-    """
-    plots the raw stock data
-    """
+    """ plots the raw stock data """
+
     out = f"{BASE_DIR}/raw_stocks"
     os.makedirs(out, exist_ok=True)
 
@@ -24,9 +23,8 @@ def plot_stocks(stock_data):
         plt.close()
 
 def log_stocks(stock_data):
-    """
-    print data to log for easy read
-    """
+    """ print data to log for easy read """
+
     out = f"{BASE_DIR}/raw_stocks"
     os.makedirs(out, exist_ok=True)
     s = "".join(k[0] for k in stock_data.keys())
@@ -38,3 +36,20 @@ def log_stocks(stock_data):
             f.write(f"{stock}\n")
             f.write(str(data.head()) + "\n")
             f.write(str(data.columns) + "\n\n")
+
+def log_run(config, results, str, tuning=False):
+    """ Log the output of RNN runs """
+
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    with open(f"{RESULTS_DIR}/{str}_results.log", "a") as f:
+        f.write("Tuning Run:\n") if tuning else f.write("Final Run:\n")
+        f.write(f"\tHyper Parameters: {config}\n\tAccuracy: {results["acc"]}\n\n")
+        f.close()
+
+def log_epoch(str, model:str):
+    """log loss per epoch"""
+
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    with open(f"{RESULTS_DIR}/{model}_losses.log", "a") as f:
+        f.write(str)
+        f.close()
