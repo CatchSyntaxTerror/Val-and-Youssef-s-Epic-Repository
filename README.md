@@ -10,7 +10,7 @@ Implementation and analysis of Adaline and Logistic Regression, including bias a
 Implementation of a Linear Support Vector Machine (SVM), scalable dataset generation, and analysis of scalability and primal vs dual formulations.
 
 ### midterm 
+Implements a machine learning pipeline for MNIST and Fashion-MNIST classification using dimensionality reduction, SVC models, and bootstrap aggregating.
 
 ## Darnel
-Implements a machine learning pipeline for MNIST and Fashion-MNIST classification using dimensionality reduction, SVC models, and bootstrap aggregating.
 ![Frog Sketch](assets/frog.png)
